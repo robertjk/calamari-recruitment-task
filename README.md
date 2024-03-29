@@ -39,10 +39,15 @@ Do uruchomienia aplikacji wymagane są:
 
 ### Instalacja
 
-Przed pierwszym uruchomieniem należy zainstalować zależności przechodząc do folderu aplikacji i wywołując:
+Przed pierwszym uruchomieniem należy zainstalować zależności przechodząc do folderu aplikacji:
 
 ```sh
 $ cd calamari-recruitment-task/
+```
+
+i wywołując:
+
+```sh
 $ npm install
 ```
 
