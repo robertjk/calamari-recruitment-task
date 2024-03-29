@@ -27,3 +27,37 @@ Zadanie polega na implementacji ekranu aplikacji z wykorzystaniem React.js. Proj
 - Testy
 - RWD
 - Wygodna obsługa przy pomocy klawiatury
+
+## Uruchomienie
+
+### Wymagania
+
+Do uruchomienia aplikacji wymagane są:
+
+- [Node](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+
+### Instalacja
+
+Przed pierwszym uruchomieniem należy zainstalować zależności przechodząc do folderu aplikacji i wywołując:
+
+```sh
+$ cd calamari-recruitment-task/
+$ npm install
+```
+
+### Uruchomienie aplikacji
+
+Aby uruchomić aplikację należy wywołać:
+
+```sh
+$ npm start
+```
+
+### Testy
+
+Aby uruchomić testy należy wywołać:
+
+```sh
+$ npm run test
+```
