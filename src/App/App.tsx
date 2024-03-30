@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import { type Page, PAGE_TITLES } from "./page.type";
 import { PageSelect } from "./PageSelect";
 import { SearchInput } from "./SearchInput";
-import { type Page, PAGE_TITLES } from "./page.type";
+import { SpecialistsList } from "./SpecialistsList";
 
 import "./App.css";
 
@@ -19,7 +20,9 @@ function App() {
           <SearchInput className="App-searchInput" />
         </form>
       </header>
-      <main className="App-main">{/* TODO: Display specialists here */}</main>
+      <main className="App-main">
+        <SpecialistsList />
+      </main>
     </div>
   );
 }
