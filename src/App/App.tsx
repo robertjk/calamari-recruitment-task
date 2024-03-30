@@ -5,22 +5,22 @@ import { PageSelect } from "./PageSelect";
 import { SearchInput } from "./SearchInput";
 import { SpecialistsList } from "./SpecialistsList";
 
-import "./App.css";
+import styles from "./App.module.css";
 
 function App() {
   const [page] = useState<Page>("all");
   const pageTitle = PAGE_TITLES[page];
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="App-title">{pageTitle}</h1>
-        <form className="App-form">
-          <PageSelect className="App-pageSelect" />
-          <SearchInput className="App-searchInput" />
+    <div className={styles.root}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{pageTitle}</h1>
+        <form className={styles.form}>
+          <PageSelect className={styles.pageSelect} />
+          <SearchInput className={styles.searchInput} />
         </form>
       </header>
-      <main className="App-main">
+      <main className={styles.main}>
         <SpecialistsList />
       </main>
     </div>

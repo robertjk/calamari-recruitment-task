@@ -1,4 +1,4 @@
-.App {
+.root {
   flex-grow: 1;
   display: grid;
   /* prettier-ignore */
@@ -13,7 +13,7 @@
   height: 100%;
 }
 
-.App-header {
+.header {
   /* To absolutely position title and search, so that they are removed from the
    * regular flow and don't affect page select's centering */
   position: relative;
@@ -28,14 +28,14 @@
   height: 100%;
 }
 
-.App-main {
+.main {
   grid-area: main;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.App-title {
+.title {
   position: absolute;
   left: 0;
   font-size: 30px;
@@ -43,15 +43,15 @@
   text-wrap: nowrap;
 }
 
-.App-form {
+.form {
   display: contents;
 }
 
-.App-pageSelect {
+.pageSelect {
   grid-area: page-select;
 }
 
-.App-searchInput {
+.searchInput {
   position: absolute;
   right: 0;
   grid-area: search-input;
