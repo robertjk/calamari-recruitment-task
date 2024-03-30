@@ -27,9 +27,6 @@ Projekt ekranu znajduje się w
 - Wykorzystaj w projekcie Redux / ReduxToolkit,
 - Do zbudowania projektu wykorzystaj webpack (nie korzystaj z gotowych rozwiązań
   tj. CRA).
-  - **Użyłem Vite'a zamiast Webpacka**. Jeszcze nigdy go nie używałem, a
-    chciałem spróbować, więc pomyślałem że to będzie dobra okazja. Myślę że tak
-    samo pokazuje to moje umiejętności konfigurowania narzędzi jak Webpack.
 
 ### Mile widziane
 
@@ -37,6 +34,14 @@ Projekt ekranu znajduje się w
 - Testy
 - RWD
 - Wygodna obsługa przy pomocy klawiatury
+
+## Uwaga o rozwiązaniu
+
+**Użyłem Vite'a zamiast Webpacka**. Jeszcze nigdy nie miałem okazji używać tego
+narzędzia, a od jakiegoś czasu bardzo chciałem spróbować. Pomyślałem że teraz
+będzie dobry moment. Myślę, że tak samo demonstruje moje umiejętności
+konfiguracji bundlerów jak zrobiłby to Webpack; szczególnie że używam go
+pierwszy raz.
 
 ## Uruchomienie
 
