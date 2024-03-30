@@ -27,6 +27,9 @@ Projekt ekranu znajduje się w
 - Wykorzystaj w projekcie Redux / ReduxToolkit,
 - Do zbudowania projektu wykorzystaj webpack (nie korzystaj z gotowych rozwiązań
   tj. CRA).
+  - **Użyłem Vite'a zamiast Webpacka**. Jeszcze nigdy go nie używałem, a
+    chciałem spróbować, więc pomyślałem że to będzie dobra okazja. Myślę że tak
+    samo pokazuje to moje umiejętności konfigurowania narzędzi jak Webpack.
 
 ### Mile widziane
 
@@ -64,7 +67,7 @@ $ npm install
 Aby uruchomić aplikację należy wywołać:
 
 ```sh
-$ npm start
+$ npm run dev
 ```
 
 ### Testy
