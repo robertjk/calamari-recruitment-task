@@ -15,10 +15,10 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>{pageTitle}</h1>
-        <form>
-          <fieldset>
+      <header className="App-header">
+        <h1 className="App-title">{pageTitle}</h1>
+        <form className="App-form">
+          <fieldset className="App-pageSelect">
             <label>
               {PAGE_TITLES.all}
               <input type="radio" name="page" value="all" />
@@ -28,10 +28,10 @@ function App() {
               <input type="radio" name="page" value="favorites" />
             </label>
           </fieldset>
-          <input type="search" name="searchText" />
+          <input className="App-search" type="search" name="searchText" />
         </form>
       </header>
-      <main>{/* TODO: Display specialists here */}</main>
+      <main className="App-main">{/* TODO: Display specialists here */}</main>
     </div>
   );
 }
