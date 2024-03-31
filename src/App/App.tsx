@@ -8,15 +8,23 @@ import { SpecialistsList } from "./SpecialistsList";
 import styles from "./App.module.css";
 
 function App() {
-  const [page] = useState<Page>("all");
+  const [page, setPage] = useState<Page>("all");
   const pageTitle = PAGE_TITLES[page];
+
+  function handlePageSelect(page: Page) {
+    setPage(page);
+  }
 
   return (
     <div className={styles.root}>
       <header className={styles.header}>
         <h1 className={styles.title}>{pageTitle}</h1>
         <form className={styles.form}>
-          <PageSelect className={styles.pageSelect} />
+          <PageSelect
+            className={styles.pageSelect}
+            page={page}
+            onSelect={handlePageSelect}
+          />
           <SearchInput className={styles.searchInput} />
         </form>
       </header>
