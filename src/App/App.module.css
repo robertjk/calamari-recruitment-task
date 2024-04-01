@@ -3,14 +3,18 @@
   display: grid;
   /* prettier-ignore */
   grid-template:
-    "header" 50px
+    "header" auto
     "main"   1fr /
-    minmax(auto, 1385px);
+    minmax(auto, 138.5rem);
   justify-content: center;
   align-items: center;
-  padding: 64px;
+  padding: 1.8rem;
   width: 100%;
   height: 100%;
+
+  @media (min-width: 800px) {
+    padding: 6.4rem;
+  }
 }
 
 .header {
@@ -21,11 +25,22 @@
   display: grid;
   /* prettier-ignore */
   grid-template:
-    "title .                 page-select .                 search-input" 100% /
-     1fr   minmax(18px, 1fr) auto        minmax(18px, 1fr) 1fr;
-  column-gap: 1fr;
+    "title" auto
+    "page-select" auto
+    "search-input" auto /
+     auto;
+  row-gap: 1.6rem;
   align-items: center;
-  height: 100%;
+  justify-items: center;
+  height: auto;
+
+  @media (min-width: 1200px) {
+    /* prettier-ignore */
+    grid-template:
+      "title page-select search-input" 100% /
+       1fr   auto        1fr;
+    height: 5rem;
+  }
 }
 
 .main {
@@ -36,11 +51,15 @@
 }
 
 .title {
-  position: absolute;
-  left: 0;
+  grid-area: title;
   font-size: var(--text-size-xl);
   font-weight: 600;
   text-wrap: nowrap;
+
+  @media (min-width: 1200px) {
+    position: absolute;
+    left: 0;
+  }
 }
 
 .form {
@@ -52,7 +71,10 @@
 }
 
 .searchInput {
-  position: absolute;
-  right: 0;
   grid-area: search-input;
+
+  @media (min-width: 1200px) {
+    position: absolute;
+    right: 0;
+  }
 }

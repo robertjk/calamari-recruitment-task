@@ -1,7 +1,7 @@
 .root {
-  width: 104px;
-  padding: 15px 10px 15px 38px;
-  background: url("./search-icon.svg") left 10px center no-repeat;
+  width: 10.4rem;
+  padding: 1.5rem 1rem 1.5rem 3.8rem;
+  background: url("./search-icon.svg") left 1rem center no-repeat;
   transition: width var(--animation-timing-function) var(--animation-duration);
 
   &::placeholder {
@@ -9,7 +9,8 @@
   }
 
   &:focus {
-    width: 316px;
+    width: 100%;
+    max-width: 31.6rem;
     background-color: var(--color-white);
   }
 }

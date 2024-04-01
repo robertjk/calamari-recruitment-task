@@ -1,27 +1,29 @@
 .root {
-  display: flex;
-  flex-flow: row nowrap;
-  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, 20rem));
+  justify-content: center;
+  height: 5rem;
 }
 
 .button {
+  --border-radius: 0.4rem;
+  --border-width: 0.1rem;
+
   /* To relatively position the input */
   position: relative;
-  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-grey-dark);
+  border: var(--border-width) solid var(--color-grey-dark);
   border-right-width: 0;
-  width: 200px;
 
   &:first-child {
-    border-radius: 4px 0 0 4px;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
   }
 
   &:last-child {
-    border-right-width: 1px;
-    border-radius: 0 4px 4px 0;
+    border-right-width: var(--border-width);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
 
   &:hover {
@@ -31,7 +33,7 @@
 
   &.isChecked {
     border-color: var(--color-blue);
-    color: #ffffff;
+    color: var(--color-white);
     background-color: var(--color-blue);
   }
 }
