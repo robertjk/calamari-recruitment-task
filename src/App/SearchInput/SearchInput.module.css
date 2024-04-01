@@ -1,0 +1,12 @@
+.root {
+  padding: 15px 10px 15px 38px;
+  background: url("./search-icon.svg") left 10px center no-repeat;
+
+  &::placeholder {
+    color: var(--color-grey-darker);
+  }
+
+  &:focus {
+    background-color: var(--color-white);
+  }
+}

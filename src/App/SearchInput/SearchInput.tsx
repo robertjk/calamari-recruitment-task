@@ -1,4 +1,7 @@
+import classNames from "classnames";
 import { ChangeEvent } from "react";
+
+import styles from "./SearchInput.module.css";
 
 interface SearchInputProps {
   className?: string;
@@ -18,12 +21,12 @@ function SearchInput({
 
   return (
     <input
-      className={className}
       type="search"
       name="searchText"
-      placeholder="Search"
+      placeholder="Search..."
       value={searchPhrase}
       onChange={handleChange}
+      className={classNames(className, styles.root)}
     />
   );
 }

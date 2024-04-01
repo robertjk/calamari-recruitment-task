@@ -1,11 +1,12 @@
 :root {
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-grey-light: #f9fafe;
-  --color-grey-medium: #f3f5fc;
+  --color-grey-lighter: #f9fafe;
+  --color-grey-light: #f3f5fc;
   --color-grey-dark: #e2e4ec;
+  --color-grey-darker: #a2a8c1;
   --color-blue: #3540ff;
 
   color: var(--color-black);
-  background-color: var(--color-grey-light);
+  background-color: var(--color-grey-lighter);
 }
