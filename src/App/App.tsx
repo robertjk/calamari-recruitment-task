@@ -12,8 +12,10 @@ import styles from "./App.module.css";
 function App() {
   const [page, setPage] = useState<Page>("all");
   const [searchPhrase, setSearchPhrase] = useState<string>("");
+  const [specialists] = useState([]);
 
-  const pageTitle = PAGE_TITLES[page];
+  const specialistsCount = specialists.length;
+  const pageTitle = `${PAGE_TITLES[page]} (${String(specialistsCount)})`;
 
   function handlePageSelect(newPage: Page) {
     setPage(newPage);
