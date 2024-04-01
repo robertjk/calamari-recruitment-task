@@ -7,6 +7,12 @@
   --color-grey-darker: #a2a8c1;
   --color-blue: #3540ff;
 
+  /* 1rem = 10px */
+  --text-size-xl: 3rem;
+  --text-size-l: 1.9rem;
+  --text-size-m: 1.4rem;
+  --text-size-s: 1.2rem;
+
   --animation-timing-function: ease-in-out;
   --animation-duration: 0.2s;
 }

@@ -38,7 +38,7 @@
 .title {
   position: absolute;
   left: 0;
-  font-size: 30px;
+  font-size: var(--text-size-xl);
   font-weight: 600;
   text-wrap: nowrap;
 }

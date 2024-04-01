@@ -12,9 +12,14 @@
   src: url("./fonts/open-sans/OpenSans-SemiBold.woff2") format("woff2");
 }
 
+:root {
+  font-size: 10px;
+}
+
 body {
   color: var(--color-black);
   background-color: var(--color-grey-lighter);
+  font-size: 1.4rem;
   font-family: "Open Sans", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
