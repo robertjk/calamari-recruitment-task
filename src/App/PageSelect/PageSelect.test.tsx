@@ -7,14 +7,14 @@ import { type Page, PAGE_TITLES } from "../page.type";
 
 import { PageSelect } from "./PageSelect";
 
-const handleSelectMock = vi.fn();
+const handlePageChangeMock = vi.fn();
 
 function StatefulParent() {
   const [page, setPage] = useState<Page>("all");
-  handleSelectMock.mockImplementation((page: Page) => {
+  handlePageChangeMock.mockImplementation((page: Page) => {
     setPage(page);
   });
-  return <PageSelect page={page} onSelect={handleSelectMock} />;
+  return <PageSelect page={page} onPageChange={handlePageChangeMock} />;
 }
 
 function renderComponent() {
@@ -43,24 +43,24 @@ test("Invokes onSelect after clicking inputs and labels", async () => {
     new RegExp(PAGE_TITLES.favorites, "i"),
   );
   await user.click(favoritesInput);
-  expect(handleSelectMock.mock.lastCall).toStrictEqual(["favorites"]);
+  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["favorites"]);
 
   const allInput = screen.getByLabelText(new RegExp(PAGE_TITLES.all, "i"));
   await user.click(allInput);
-  expect(handleSelectMock.mock.lastCall).toStrictEqual(["all"]);
+  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["all"]);
 
   const favoritesLabel = screen.getByText(
     new RegExp(PAGE_TITLES.favorites, "i"),
   );
   await user.click(favoritesLabel);
-  expect(handleSelectMock.mock.lastCall).toStrictEqual(["favorites"]);
+  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["favorites"]);
 
   const allLabel = screen.getByText(new RegExp(PAGE_TITLES.all, "i"));
   await user.click(allLabel);
-  expect(handleSelectMock.mock.lastCall).toStrictEqual(["all"]);
+  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["all"]);
 
-  expect(handleSelectMock.mock.calls.length).toBe(4);
+  expect(handlePageChangeMock.mock.calls.length).toBe(4);
 
   await user.click(allLabel);
-  expect(handleSelectMock.mock.calls.length).toBe(4);
+  expect(handlePageChangeMock.mock.calls.length).toBe(4);
 });

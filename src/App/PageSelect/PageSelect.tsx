@@ -3,12 +3,12 @@ import { type Page, PAGE_TITLES } from "../page.type";
 interface PageSelectProps {
   className?: string;
   page: Page;
-  onSelect: (page: Page) => void;
+  onPageChange: (page: Page) => void;
 }
 
-function PageSelect({ className, page, onSelect }: PageSelectProps) {
+function PageSelect({ className, page, onPageChange }: PageSelectProps) {
   const createHandleChange = (page: Page) => () => {
-    onSelect(page);
+    onPageChange(page);
   };
 
   return (
