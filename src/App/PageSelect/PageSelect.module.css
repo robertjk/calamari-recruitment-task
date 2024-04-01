@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 50px;
+}
+
+.button {
+  /* To relatively position the input */
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e4ec;
+  border-right-width: 0;
+  width: 200px;
+
+  &:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+
+  &:last-child {
+    border-right-width: 1px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  &:hover {
+    color: #3540ff;
+    background-color: #f3f5fc;
+  }
+
+  &.isChecked {
+    border-color: #3540ff;
+    color: #ffffff;
+    background-color: #3540ff;
+  }
+}
+
+.input {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

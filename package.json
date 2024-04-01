@@ -12,8 +12,10 @@
     "test": "vitest"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "the-new-css-reset": "^1.11.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",

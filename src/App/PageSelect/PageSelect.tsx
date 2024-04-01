@@ -1,4 +1,8 @@
+import classNames from "classnames";
+
 import { type Page, PAGE_TITLES } from "../page.type";
+
+import styles from "./PageSelect.module.css";
 
 interface PageSelectProps {
   className?: string;
@@ -11,9 +15,14 @@ function PageSelect({ className, onPageChange, page }: PageSelectProps) {
     onPageChange(page);
   };
 
+  const buttonClassName = (buttonPage: Page) =>
+    classNames(styles.button, {
+      [styles.isChecked]: page === buttonPage,
+    });
+
   return (
-    <fieldset className={className}>
-      <label>
+    <fieldset className={classNames(className, styles.root)}>
+      <label className={buttonClassName("all")}>
         {PAGE_TITLES.all}
         <input
           type="radio"
@@ -21,9 +30,10 @@ function PageSelect({ className, onPageChange, page }: PageSelectProps) {
           value="all"
           checked={page === "all"}
           onChange={createHandleChange("all")}
+          className={styles.input}
         />
       </label>
-      <label>
+      <label className={buttonClassName("favorites")}>
         {PAGE_TITLES.favorites}
         <input
           type="radio"
@@ -31,6 +41,7 @@ function PageSelect({ className, onPageChange, page }: PageSelectProps) {
           value="favorites"
           checked={page === "favorites"}
           onChange={createHandleChange("favorites")}
+          className={styles.input}
         />
       </label>
     </fieldset>
