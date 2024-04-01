@@ -9,10 +9,16 @@ import styles from "./App.module.css";
 
 function App() {
   const [page, setPage] = useState<Page>("all");
+  const [searchPhrase, setSearchPhrase] = useState<string>("");
+
   const pageTitle = PAGE_TITLES[page];
 
-  function handlePageSelect(page: Page) {
-    setPage(page);
+  function handlePageSelect(newPage: Page) {
+    setPage(newPage);
+  }
+
+  function handleSearchPhraseChange(newSearchPhrase: string) {
+    setSearchPhrase(newSearchPhrase);
   }
 
   return (
@@ -22,10 +28,14 @@ function App() {
         <form className={styles.form}>
           <PageSelect
             className={styles.pageSelect}
+            onPageChange={handlePageSelect}
             page={page}
-            onSelect={handlePageSelect}
           />
-          <SearchInput className={styles.searchInput} />
+          <SearchInput
+            className={styles.searchInput}
+            onSearchPhraseChange={handleSearchPhraseChange}
+            searchPhrase={searchPhrase}
+          />
         </form>
       </header>
       <main className={styles.main}>
