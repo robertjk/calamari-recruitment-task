@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e2e4ec;
+  border: 1px solid var(--color-grey-dark);
   border-right-width: 0;
   width: 200px;
 
@@ -25,14 +25,14 @@
   }
 
   &:hover {
-    color: #3540ff;
-    background-color: #f3f5fc;
+    color: var(--color-blue);
+    background-color: var(--color-grey-medium);
   }
 
   &.isChecked {
-    border-color: #3540ff;
+    border-color: var(--color-blue);
     color: #ffffff;
-    background-color: #3540ff;
+    background-color: var(--color-blue);
   }
 }
 

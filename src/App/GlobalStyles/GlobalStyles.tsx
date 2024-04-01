@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import "the-new-css-reset/css/reset.css";
 
 import "./GlobalStyles.boxSizing.css";
+import "./GlobalStyles.colors.css";
 import "./GlobalStyles.layout.css";
 import "./GlobalStyles.typography.css";
 
