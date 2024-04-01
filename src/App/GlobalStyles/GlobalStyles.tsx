@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 // CSS Reset
 import "the-new-css-reset/css/reset.css";
 
+import "./GlobalStyles.constants.css";
 import "./GlobalStyles.boxSizing.css";
-import "./GlobalStyles.colors.css";
 import "./GlobalStyles.layout.css";
 import "./GlobalStyles.typography.css";
 
@@ -13,7 +13,7 @@ interface GlobalStylesProps {
 }
 
 function GlobalStyles({ children }: GlobalStylesProps) {
-  return <>{children}</>;
+  return children;
 }
 
 export { GlobalStyles };

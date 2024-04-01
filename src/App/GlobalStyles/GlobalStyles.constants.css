@@ -7,6 +7,6 @@
   --color-grey-darker: #a2a8c1;
   --color-blue: #3540ff;
 
-  color: var(--color-black);
-  background-color: var(--color-grey-lighter);
+  --animation-timing-function: ease-in-out;
+  --animation-duration: 0.2s;
 }

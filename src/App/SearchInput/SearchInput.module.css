@@ -1,12 +1,15 @@
 .root {
+  width: 104px;
   padding: 15px 10px 15px 38px;
   background: url("./search-icon.svg") left 10px center no-repeat;
+  transition: width var(--animation-timing-function) var(--animation-duration);
 
   &::placeholder {
     color: var(--color-grey-darker);
   }
 
   &:focus {
+    width: 316px;
     background-color: var(--color-white);
   }
 }
