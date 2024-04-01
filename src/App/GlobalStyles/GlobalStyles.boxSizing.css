@@ -1,0 +1,6 @@
+/* Set border-box as default box-sizing model for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

@@ -2,17 +2,19 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
-  src: url("../assets/fonts/open-sans/OpenSans-Regular.woff2") format("woff2");
+  src: url("./fonts/open-sans/OpenSans-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
-  src: url("../assets/fonts/open-sans/OpenSans-SemiBold.woff2") format("woff2");
+  src: url("./fonts/open-sans/OpenSans-SemiBold.woff2") format("woff2");
 }
 
 body {
+  color: #000000;
+  background-color: #f9fafe;
   font-family: "Open Sans", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
