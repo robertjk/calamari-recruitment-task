@@ -1,7 +1,8 @@
 import classNames from "classnames";
 
-import { type Page, PAGE_TITLES } from "../page.type";
+import { type Page } from "%store/specialistsSlice";
 
+import { PAGE_TITLES } from "./pageTitles";
 import styles from "./PageSelect.module.css";
 
 interface PageSelectProps {

@@ -30,7 +30,7 @@ test("properly calls onSearchPhraseChange handler", async () => {
   const user = userEvent.setup();
   renderComponent();
 
-  const input = screen.getByPlaceholderText("Search");
+  const input = screen.getByPlaceholderText(/Search/);
   input.focus();
   await user.keyboard("something");
 

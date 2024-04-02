@@ -3,8 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { expect, test, vi } from "vitest";
 
-import { type Page, PAGE_TITLES } from "../page.type";
+import { type Page } from "%store/specialistsSlice";
 
+import { PAGE_TITLES } from "./pageTitles";
 import { PageSelect } from "./PageSelect";
 
 const handlePageChangeMock = vi.fn();

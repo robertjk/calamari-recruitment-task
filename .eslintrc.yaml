@@ -30,3 +30,13 @@ rules:
   react-refresh/only-export-components:
     - warn
     - { allowConstantExport: true }
+  "@typescript-eslint/no-restricted-imports":
+    - error
+    - paths:
+        - name: react-redux
+          importNames:
+            - useSelector
+            - useStore
+            - useDispatch
+          message:
+            Please use pre-typed versions from `src/app/hooks.ts` instead.
