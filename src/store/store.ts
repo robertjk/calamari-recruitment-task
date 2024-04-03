@@ -48,6 +48,7 @@ type AppThunk<ThunkReturnType = void> = ThunkAction<
 >;
 
 export {
+  makeStore,
   store,
   type AppStore,
   type AppDispatch,

@@ -15,12 +15,12 @@ type Page = "all" | "favorites";
 interface SpecialistsSliceState {
   specialists: Specialist[];
   page: Page;
-  searchQuery: string | undefined;
+  searchQuery: string;
 }
 
 const initialState: SpecialistsSliceState = {
   page: "all",
-  searchQuery: undefined,
+  searchQuery: "",
   specialists: [],
 };
 
@@ -31,7 +31,7 @@ const specialistsSlice = createSlice({
     setPage(state, action: PayloadAction<Page>) {
       state.page = action.payload;
     },
-    setSearchQuery(state, action: PayloadAction<string | undefined>) {
+    setSearchQuery(state, action: PayloadAction<string>) {
       state.searchQuery = action.payload;
     },
     setSpecialists(state, action: PayloadAction<Specialist[]>) {
@@ -53,6 +53,7 @@ const { selectPage, selectSpecialists, selectSearchQuery } =
 export {
   type Page,
   type Specialist,
+  type SpecialistsSliceState,
   specialistsSlice,
   setPage,
   setSearchQuery,
