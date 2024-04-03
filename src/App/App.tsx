@@ -17,20 +17,18 @@ function App() {
   const pageTitle = `${PAGE_TITLES[page]} (${String(specialistsCount)})`;
 
   return (
-    <GlobalStyles>
-      <div className={styles.root}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>{pageTitle}</h1>
-          <form className={styles.form}>
-            <PageSelect className={styles.pageSelect} />
-            <SearchInput className={styles.searchInput} />
-          </form>
-        </header>
-        <main className={styles.main}>
-          <SpecialistsList />
-        </main>
-      </div>
-    </GlobalStyles>
+    <div className={styles.root}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{pageTitle}</h1>
+        <form className={styles.form}>
+          <PageSelect className={styles.pageSelect} />
+          <SearchInput className={styles.searchInput} />
+        </form>
+      </header>
+      <main className={styles.main}>
+        <SpecialistsList />
+      </main>
+    </div>
   );
 }
 
