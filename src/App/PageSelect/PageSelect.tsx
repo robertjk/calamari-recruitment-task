@@ -1,19 +1,21 @@
 import classNames from "classnames";
 
-import { type Page } from "%store/specialistsSlice";
+import { useAppDispatch, useAppSelector } from "%store/hooks";
+import { type Page, selectPage, setPage } from "%store/specialistsSlice";
 
 import { PAGE_TITLES } from "./pageTitles";
 import styles from "./PageSelect.module.css";
 
 interface PageSelectProps {
   className?: string;
-  onPageChange: (page: Page) => void;
-  page: Page;
 }
 
-function PageSelect({ className, onPageChange, page }: PageSelectProps) {
-  const createHandleChange = (page: Page) => () => {
-    onPageChange(page);
+function PageSelect({ className }: PageSelectProps) {
+  const dispatch = useAppDispatch();
+  const page = useAppSelector(selectPage);
+
+  const createHandleChange = (newPage: Page) => () => {
+    dispatch(setPage(newPage));
   };
 
   const buttonClassName = (buttonPage: Page) =>

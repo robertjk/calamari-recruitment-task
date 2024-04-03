@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useAppSelector } from "%store/hooks";
+import { selectPage, selectSpecialists } from "%store/specialistsSlice";
 
-import { type Page, PAGE_TITLES } from "./page.type";
-
+import { PAGE_TITLES } from "./page.type";
 import { GlobalStyles } from "./GlobalStyles";
 import { PageSelect } from "./PageSelect";
 import { SearchInput } from "./SearchInput";
@@ -10,20 +10,11 @@ import { SpecialistsList } from "./SpecialistsList";
 import styles from "./App.module.css";
 
 function App() {
-  const [page, setPage] = useState<Page>("all");
-  const [searchPhrase, setSearchPhrase] = useState<string>("");
-  const [specialists] = useState([]);
+  const page = useAppSelector(selectPage);
+  const specialists = useAppSelector(selectSpecialists);
 
   const specialistsCount = specialists.length;
   const pageTitle = `${PAGE_TITLES[page]} (${String(specialistsCount)})`;
-
-  function handlePageSelect(newPage: Page) {
-    setPage(newPage);
-  }
-
-  function handleSearchPhraseChange(newSearchPhrase: string) {
-    setSearchPhrase(newSearchPhrase);
-  }
 
   return (
     <GlobalStyles>
@@ -31,16 +22,8 @@ function App() {
         <header className={styles.header}>
           <h1 className={styles.title}>{pageTitle}</h1>
           <form className={styles.form}>
-            <PageSelect
-              className={styles.pageSelect}
-              onPageChange={handlePageSelect}
-              page={page}
-            />
-            <SearchInput
-              className={styles.searchInput}
-              onSearchPhraseChange={handleSearchPhraseChange}
-              searchPhrase={searchPhrase}
-            />
+            <PageSelect className={styles.pageSelect} />
+            <SearchInput className={styles.searchInput} />
           </form>
         </header>
         <main className={styles.main}>

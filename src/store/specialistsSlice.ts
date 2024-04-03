@@ -19,22 +19,45 @@ interface SpecialistsSliceState {
 }
 
 const initialState: SpecialistsSliceState = {
-  specialists: [],
   page: "all",
   searchQuery: undefined,
+  specialists: [],
 };
 
 const specialistsSlice = createSlice({
   name: "specialists",
   initialState,
   reducers: {
-    setSpecialists(state, action: PayloadAction<Specialist[]>) {
-      state.specialists = action.payload;
+    setPage(state, action: PayloadAction<Page>) {
+      state.page = action.payload;
     },
     setSearchQuery(state, action: PayloadAction<string | undefined>) {
       state.searchQuery = action.payload;
     },
+    setSpecialists(state, action: PayloadAction<Specialist[]>) {
+      state.specialists = action.payload;
+    },
+  },
+  selectors: {
+    selectPage: (state) => state.page,
+    selectSpecialists: (state) => state.specialists,
+    selectSearchQuery: (state) => state.searchQuery,
   },
 });
 
-export { specialistsSlice, type Page, type Specialist };
+const { setPage, setSearchQuery, setSpecialists } = specialistsSlice.actions;
+
+const { selectPage, selectSpecialists, selectSearchQuery } =
+  specialistsSlice.selectors;
+
+export {
+  type Page,
+  type Specialist,
+  specialistsSlice,
+  setPage,
+  setSearchQuery,
+  setSpecialists,
+  selectPage,
+  selectSpecialists,
+  selectSearchQuery,
+};
