@@ -6,6 +6,7 @@
     "header" auto
     "main"   1fr /
     minmax(auto, 138.5rem);
+  row-gap: 5.1rem;
   justify-content: center;
   align-items: center;
   padding: 1.8rem;
@@ -25,8 +26,8 @@
   display: grid;
   /* prettier-ignore */
   grid-template:
-    "title" auto
-    "page-select" auto
+    "title"        auto
+    "page-select"  auto
     "search-input" auto /
      auto;
   row-gap: 1.6rem;
@@ -45,9 +46,6 @@
 
 .main {
   grid-area: main;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .title {

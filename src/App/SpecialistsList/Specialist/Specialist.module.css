@@ -1,0 +1,76 @@
+.root {
+  display: grid;
+  /* prettier-ignore */
+  grid-template:
+    "dots       .          .          .          .          favorites"  3.2rem
+    ".          .          photo      photo      .          ."          10.0rem
+    ".          .          .          .          .          ."          2.4rem
+    "name       name       name       name       name       name"       1.5rem
+    ".          .          .          .          .          ."          1.1rem
+    "profession profession profession profession profession profession" 1.4rem
+    ".          .          .          .          .          ."          4.0rem
+    "alert      alert      calendar   calendar   message    message"    4.4rem
+    "ratings    ratings    ratings    ratings    ratings    ratings"    8.8rem
+    "profile    profile    profile    book-visit book-visit book-visit" 6.0rem /
+     1fr        1fr        1fr        1fr        1fr        1fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--color-white);
+}
+
+.name {
+  grid-area: name;
+}
+
+.profession {
+  grid-area: profession;
+}
+
+.photo {
+  grid-area: photo;
+}
+
+.actions {
+  display: contents;
+}
+
+.favorites {
+  grid-area: favorites;
+}
+
+.dots {
+  grid-area: dots;
+}
+
+.alert {
+  grid-area: alert;
+}
+
+.calendar {
+  grid-area: calendar;
+}
+
+.message {
+  grid-area: message;
+}
+
+.profileLink {
+  grid-area: profile;
+}
+
+.bookVisit {
+  grid-area: bookVisit;
+}
+
+.ratingsPanel {
+  grid-area: ratings;
+}
+
+.profileLink {
+  grid-area: profile;
+}
+
+.bookVisit {
+  grid-area: book-visit;
+}
