@@ -1,12 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 
-import { PAGE_TITLES } from "./page.type";
+import { renderWithStore } from "%store/utils/renderWithStore";
+
+import { PAGE_TITLES } from "./PageSelect/pageTitles";
 
 import { App } from "./App";
 
-test("renders first page by default", () => {
-  render(<App />);
+test("Renders properly the default page", () => {
+  renderWithStore(<App />);
 
   const pageTitle = screen.getAllByText(new RegExp(PAGE_TITLES.all, "i"));
 

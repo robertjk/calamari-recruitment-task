@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "%store/hooks";
+import { useAppDispatch, useAppSelector } from "%store/utils/hooks";
 import { type Page, selectPage, setPage } from "%store/specialistsSlice";
 
 import { PAGE_TITLES } from "./pageTitles";

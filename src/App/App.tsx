@@ -1,4 +1,4 @@
-import { useAppSelector } from "%store/hooks";
+import { useAppSelector } from "%store/utils/hooks";
 import { selectPage, selectSpecialists } from "%store/specialistsSlice";
 
 import { PAGE_TITLES } from "./page.type";

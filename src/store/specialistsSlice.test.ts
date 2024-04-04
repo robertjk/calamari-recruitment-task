@@ -26,7 +26,7 @@ beforeEach<LocalTestContext>((context) => {
   context.store = makeStore({ specialists: initialState });
 });
 
-test<LocalTestContext>("should handle initial state", () => {
+test<LocalTestContext>("Properly initializes the store", () => {
   expect(
     specialistsSlice.reducer(undefined, { type: "unknown" }),
   ).toStrictEqual({
@@ -36,7 +36,7 @@ test<LocalTestContext>("should handle initial state", () => {
   });
 });
 
-test<LocalTestContext>("should handle setPage", ({ store }) => {
+test<LocalTestContext>("Properly handles setPage action", ({ store }) => {
   expect(selectPage(store.getState())).toBe("all");
 
   store.dispatch(setPage("favorites"));
@@ -44,7 +44,9 @@ test<LocalTestContext>("should handle setPage", ({ store }) => {
   expect(selectPage(store.getState())).toBe("favorites");
 });
 
-test<LocalTestContext>("should handle setSearchQuery", ({ store }) => {
+test<LocalTestContext>("Properly handles setSearchQuery action", ({
+  store,
+}) => {
   expect(selectSearchQuery(store.getState())).toBe("");
 
   store.dispatch(setSearchQuery("something"));
@@ -52,7 +54,9 @@ test<LocalTestContext>("should handle setSearchQuery", ({ store }) => {
   expect(selectSearchQuery(store.getState())).toBe("something");
 });
 
-test<LocalTestContext>("should handle setSpecialists", ({ store }) => {
+test<LocalTestContext>("Properly handles setSpecialists action", ({
+  store,
+}) => {
   expect(selectSpecialists(store.getState())).toStrictEqual([]);
 
   store.dispatch(

@@ -1,26 +1,15 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useState } from "react";
 import { expect, test, vi } from "vitest";
 
-import { type Page } from "%store/specialistsSlice";
+import { renderWithStore } from "%store/utils/renderWithStore";
 
 import { PAGE_TITLES } from "./pageTitles";
 import { PageSelect } from "./PageSelect";
 
-const handlePageChangeMock = vi.fn();
-
-function StatefulParent() {
-  const [page, setPage] = useState<Page>("all");
-  handlePageChangeMock.mockImplementation((page: Page) => {
-    setPage(page);
-  });
-  return <PageSelect page={page} onPageChange={handlePageChangeMock} />;
-}
-
 function renderComponent() {
   vi.clearAllMocks();
-  render(<StatefulParent />);
+  renderWithStore(<PageSelect />);
 }
 
 test("Displays both inputs", () => {
@@ -35,7 +24,7 @@ test("Displays both inputs", () => {
   expect(favoritesInput).toBeInTheDocument();
 });
 
-test("Invokes onSelect after clicking inputs and labels", async () => {
+test("Properly handles clicking on inputs and labels", async () => {
   const user = userEvent.setup();
 
   renderComponent();
@@ -44,24 +33,22 @@ test("Invokes onSelect after clicking inputs and labels", async () => {
     new RegExp(PAGE_TITLES.favorites, "i"),
   );
   await user.click(favoritesInput);
-  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["favorites"]);
+  expect(favoritesInput).toBeChecked();
 
   const allInput = screen.getByLabelText(new RegExp(PAGE_TITLES.all, "i"));
   await user.click(allInput);
-  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["all"]);
+  expect(allInput).toBeChecked();
 
   const favoritesLabel = screen.getByText(
     new RegExp(PAGE_TITLES.favorites, "i"),
   );
   await user.click(favoritesLabel);
-  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["favorites"]);
+  expect(favoritesInput).toBeChecked();
 
   const allLabel = screen.getByText(new RegExp(PAGE_TITLES.all, "i"));
   await user.click(allLabel);
-  expect(handlePageChangeMock.mock.lastCall).toStrictEqual(["all"]);
+  expect(allInput).toBeChecked();
 
-  expect(handlePageChangeMock.mock.calls.length).toBe(4);
-
-  await user.click(allLabel);
-  expect(handlePageChangeMock.mock.calls.length).toBe(4);
+  await user.click(allInput);
+  expect(allInput).toBeChecked();
 });
