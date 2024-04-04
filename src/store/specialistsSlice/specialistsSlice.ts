@@ -1,4 +1,8 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createSlice,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
 
 import { Specialist, specialists } from "./specialists";
 
@@ -47,7 +51,10 @@ const specialistsSlice = createSlice({
       const specialist = state.specialists[id];
       return `${specialist.name} ${specialist.surname}`;
     },
-    selectSpecialists: (state) => Object.values(state.specialists),
+    selectSpecialists: createSelector(
+      (state: SpecialistsSliceState) => state.specialists,
+      (specialists) => Object.values(specialists),
+    ),
     selectSearchQuery: (state) => state.searchQuery,
   },
 });
