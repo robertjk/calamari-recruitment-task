@@ -1,9 +1,7 @@
 import { useAppSelector } from "%store/utils/hooks";
 import { selectPage, selectSpecialists } from "%store/specialistsSlice";
 
-import { PAGE_TITLES } from "./page.type";
-import { GlobalStyles } from "./GlobalStyles";
-import { PageSelect } from "./PageSelect";
+import { PageSelect, PAGE_TITLES } from "./PageSelect";
 import { SearchInput } from "./SearchInput";
 import { SpecialistsList } from "./SpecialistsList";
 

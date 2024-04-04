@@ -3,9 +3,8 @@ import { expect, test } from "vitest";
 
 import { renderWithStore } from "%store/utils/renderWithStore";
 
-import { PAGE_TITLES } from "./PageSelect/pageTitles";
-
 import { App } from "./App";
+import { PAGE_TITLES } from "./PageSelect";
 
 test("Renders properly the default page", () => {
   renderWithStore(<App />);
