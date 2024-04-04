@@ -1,14 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-interface Specialist {
-  name: string;
-  profession: string;
-  photo?: string;
-  rating: {
-    sum: number;
-    count: number;
-  };
-}
+import { Specialist, specialists } from "./specialists";
 
 type Page = "all" | "favorites";
 
@@ -21,7 +13,7 @@ interface SpecialistsSliceState {
 const initialState: SpecialistsSliceState = {
   page: "all",
   searchQuery: "",
-  specialists: [],
+  specialists,
 };
 
 const specialistsSlice = createSlice({
