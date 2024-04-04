@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 import { useAppSelector } from "%store";
 import {
   selectSpecialistAverageRating,
@@ -31,8 +33,12 @@ function Specialist({ specialist }: SpecialistProps) {
         <button className={styles.alert}>Set alert</button>
         <button className={styles.calendar}>Calendar</button>
         <button className={styles.message}>Send a message</button>
-        <a className={styles.profileLink}>Profile</a>
-        <button className={styles.bookVisit}>Book a visit</button>
+        <a className={classNames(styles.bottomButton, styles.profileLink)}>
+          Profile
+        </a>
+        <button className={classNames(styles.bottomButton, styles.bookVisit)}>
+          Book a visit
+        </button>
       </div>
       <div className={styles.ratingsPanel}>
         <button>Rate 1 star</button>
