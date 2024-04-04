@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 
 import { store } from "%store";
 
-import { GlobalStyles } from "./global-styles";
 import { App } from "./App";
+import { GlobalStyles } from "./global-styles";
 
 const rootContainer = document.getElementById("root");
 

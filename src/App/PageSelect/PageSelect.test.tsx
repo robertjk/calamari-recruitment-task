@@ -4,8 +4,8 @@ import { expect, test, vi } from "vitest";
 
 import { renderWithStore } from "%store/utils/renderWithStore";
 
-import { PAGE_TITLES } from "./pageTitles";
 import { PageSelect } from "./PageSelect";
+import { PAGE_TITLES } from "./pageTitles";
 
 function renderComponent() {
   vi.clearAllMocks();

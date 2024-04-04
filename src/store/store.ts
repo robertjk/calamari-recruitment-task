@@ -1,8 +1,8 @@
 import {
   type Action,
-  type ThunkAction,
   combineSlices,
   configureStore,
+  type ThunkAction,
 } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
@@ -48,10 +48,10 @@ type AppThunk<ThunkReturnType = void> = ThunkAction<
 >;
 
 export {
-  makeStore,
-  store,
-  type AppStore,
   type AppDispatch,
+  type AppStore,
   type AppThunk,
+  makeStore,
   type RootState,
+  store,
 };

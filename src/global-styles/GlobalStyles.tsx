@@ -1,6 +1,5 @@
 // CSS Reset
 import "the-new-css-reset/css/reset.css";
-
 import "./constants.css";
 import "./boxSizing.css";
 import "./layout.css";

@@ -3,14 +3,14 @@ import { beforeEach, expect, test } from "vitest";
 import { type AppStore, makeStore } from "%store";
 
 import {
-  type SpecialistsSliceState,
-  specialistsSlice,
-  setPage,
-  setSearchQuery,
-  setSpecialists,
   selectPage,
   selectSearchQuery,
   selectSpecialists,
+  setPage,
+  setSearchQuery,
+  setSpecialists,
+  specialistsSlice,
+  type SpecialistsSliceState,
 } from "./specialistsSlice";
 
 interface LocalTestContext {

@@ -1,11 +1,10 @@
-import { useAppSelector } from "%store/utils/hooks";
+import { useAppSelector } from "%store";
 import { selectPage, selectSpecialists } from "%store/specialistsSlice";
 
-import { PageSelect, PAGE_TITLES } from "./PageSelect";
+import styles from "./App.module.css";
+import { PAGE_TITLES, PageSelect } from "./PageSelect";
 import { SearchInput } from "./SearchInput";
 import { SpecialistsList } from "./SpecialistsList";
-
-import styles from "./App.module.css";
 
 function App() {
   const page = useAppSelector(selectPage);

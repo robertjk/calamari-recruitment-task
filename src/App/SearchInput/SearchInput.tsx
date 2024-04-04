@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { ChangeEvent } from "react";
 
-import { useAppDispatch, useAppSelector } from "%store/utils/hooks";
+import { useAppDispatch, useAppSelector } from "%store";
 import { selectSearchQuery, setSearchQuery } from "%store/specialistsSlice";
 
 import styles from "./SearchInput.module.css";

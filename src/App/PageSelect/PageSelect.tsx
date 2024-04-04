@@ -1,10 +1,10 @@
 import classNames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "%store/utils/hooks";
+import { useAppDispatch, useAppSelector } from "%store";
 import { type Page, selectPage, setPage } from "%store/specialistsSlice";
 
-import { PAGE_TITLES } from "./pageTitles";
 import styles from "./PageSelect.module.css";
+import { PAGE_TITLES } from "./pageTitles";
 
 interface PageSelectProps {
   className?: string;

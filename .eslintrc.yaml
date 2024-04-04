@@ -23,11 +23,14 @@ parserOptions:
     - ./tsconfig.json
     - ./tsconfig.node.json
 plugins:
+  - simple-import-sort
   - react-refresh
 settings:
   react:
     version: detect
 rules:
+  simple-import-sort/imports: error
+  simple-import-sort/exports: error
   react-refresh/only-export-components:
     - warn
     - { allowConstantExport: true }

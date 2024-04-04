@@ -52,13 +52,13 @@ const { selectPage, selectSpecialists, selectSearchQuery } =
 
 export {
   type Page,
-  type Specialist,
-  type SpecialistsSliceState,
-  specialistsSlice,
+  selectPage,
+  selectSearchQuery,
+  selectSpecialists,
   setPage,
   setSearchQuery,
   setSpecialists,
-  selectPage,
-  selectSpecialists,
-  selectSearchQuery,
+  type Specialist,
+  specialistsSlice,
+  type SpecialistsSliceState,
 };
