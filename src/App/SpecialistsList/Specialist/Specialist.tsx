@@ -28,15 +28,46 @@ function Specialist({ specialist }: SpecialistProps) {
       <h3 className={styles.profession}>{specialist.profession}</h3>
       <img src={specialist.photoUrl} alt={photoAlt} className={styles.photo} />
       <div className={styles.actions}>
-        <button className={styles.favorites}>Add to favorites</button>
-        <button className={styles.dots}>More</button>
-        <button className={styles.alert}>Set alert</button>
-        <button className={styles.calendar}>Calendar</button>
-        <button className={styles.message}>Send a message</button>
-        <a className={classNames(styles.bottomButton, styles.profileLink)}>
+        <button
+          title="This functionality doesn't work yet"
+          className={styles.favorites}
+        >
+          Add to favorites
+        </button>
+        <button
+          title="This functionality doesn't work yet"
+          className={styles.dots}
+        >
+          More
+        </button>
+        <button
+          title="This functionality doesn't work yet"
+          className={styles.alert}
+        >
+          Set alert
+        </button>
+        <button
+          title="This functionality doesn't work yet"
+          className={styles.calendar}
+        >
+          Calendar
+        </button>
+        <button
+          title="This functionality doesn't work yet"
+          className={styles.message}
+        >
+          Send a message
+        </button>
+        <a
+          title="This functionality doesn't work yet"
+          className={classNames(styles.bottomButton, styles.profileLink)}
+        >
           Profile
         </a>
-        <button className={classNames(styles.bottomButton, styles.bookVisit)}>
+        <button
+          title="This functionality doesn't work yet"
+          className={classNames(styles.bottomButton, styles.bookVisit)}
+        >
           Book a visit
         </button>
       </div>
