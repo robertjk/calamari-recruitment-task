@@ -7,6 +7,7 @@ import {
   type Specialist,
 } from "%store/specialistsSlice";
 
+import { IconButton } from "../../IconButton";
 import styles from "./Specialist.module.css";
 
 interface SpecialistProps {
@@ -28,45 +29,50 @@ function Specialist({ specialist }: SpecialistProps) {
       <h3 className={styles.profession}>{specialist.profession}</h3>
       <img src={specialist.photoUrl} alt={photoAlt} className={styles.photo} />
       <div className={styles.actions}>
-        <button
-          title="This functionality doesn't work yet"
+        <IconButton
           className={styles.favorites}
+          icon="heart"
+          title="This functionality doesn't work yet"
         >
           Add to favorites
-        </button>
-        <button
+        </IconButton>
+        <IconButton
+          className={styles.more}
+          icon="threeDots"
           title="This functionality doesn't work yet"
-          className={styles.dots}
         >
           More
-        </button>
-        <button
-          title="This functionality doesn't work yet"
+        </IconButton>
+        <IconButton
           className={styles.alert}
+          icon="bell"
+          title="This functionality doesn't work yet"
         >
           Set alert
-        </button>
-        <button
-          title="This functionality doesn't work yet"
+        </IconButton>
+        <IconButton
           className={styles.calendar}
+          icon="calendar"
+          title="This functionality doesn't work yet"
         >
           Calendar
-        </button>
-        <button
-          title="This functionality doesn't work yet"
+        </IconButton>
+        <IconButton
           className={styles.message}
+          icon="mail"
+          title="This functionality doesn't work yet"
         >
           Send a message
-        </button>
+        </IconButton>
         <a
           title="This functionality doesn't work yet"
-          className={classNames(styles.bottomButton, styles.profileLink)}
+          className={classNames(styles.textButton, styles.profileLink)}
         >
           Profile
         </a>
         <button
           title="This functionality doesn't work yet"
-          className={classNames(styles.bottomButton, styles.bookVisit)}
+          className={classNames(styles.textButton, styles.bookVisit)}
         >
           Book a visit
         </button>

@@ -1,0 +1,37 @@
+.root {
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.icon_heart {
+    background-image: url("./icons/icon-heart.svg");
+  }
+
+  &.icon_threeDots {
+    background-image: url("./icons/icon-three-dots.svg");
+  }
+
+  &.icon_bell {
+    background-image: url("./icons/icon-bell.svg");
+  }
+
+  &.icon_calendar {
+    background-image: url("./icons/icon-calendar.svg");
+  }
+
+  &.icon_mail {
+    background-image: url("./icons/icon-mail.svg");
+  }
+}
+
+.visuallyHiddenText {
+  overflow: hidden;
+  display: block;
+  font-size: 0;
+  height: 1px;
+}

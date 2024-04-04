@@ -13,7 +13,7 @@
     ".          .          .          .          .          ."          4.0rem
     "alert      alert      calendar   calendar   message    message"    4.4rem
     "ratings    ratings    ratings    ratings    ratings    ratings"    9.0rem
-    "profile    profile    profile    bookVisit  bookVisit  bookVisit" 6.0rem /
+    "profile    profile    profile    bookVisit  bookVisit  bookVisit"  6.0rem /
      1fr        1fr        1fr        1fr        1fr        1fr;
   justify-items: center;
   align-items: center;
@@ -50,7 +50,7 @@
   grid-area: favorites;
 }
 
-.dots {
+.more {
   grid-area: dots;
 }
 
@@ -66,7 +66,7 @@
   grid-area: message;
 }
 
-.bottomButton {
+.textButton {
   display: flex;
   align-items: center;
   justify-content: center;
