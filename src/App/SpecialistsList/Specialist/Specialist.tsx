@@ -7,7 +7,7 @@ import {
   type Specialist,
 } from "%store/specialistsSlice";
 
-import { IconButton } from "../../IconButton";
+import { IconButton } from "../IconButton";
 import styles from "./Specialist.module.css";
 
 interface SpecialistProps {
