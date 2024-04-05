@@ -3,7 +3,14 @@ import { type MouseEvent, type ReactNode } from "react";
 
 import styles from "./IconButton.module.css";
 
-type Icon = "bell" | "calendar" | "heart" | "mail" | "threeDots";
+type Icon =
+  | "bell"
+  | "calendar"
+  | "heart"
+  | "mail"
+  | "starClear"
+  | "starFilled"
+  | "threeDots";
 
 interface IconButtonProps {
   children: ReactNode;

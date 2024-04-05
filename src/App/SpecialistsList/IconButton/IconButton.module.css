@@ -27,6 +27,14 @@
   &.icon_mail {
     background-image: url("./icons/icon-mail.svg");
   }
+
+  &.icon_starClear {
+    background-image: url("./icons/icon-star-clear.svg");
+  }
+
+  &.icon_starFilled {
+    background-image: url("./icons/icon-star-filled.svg");
+  }
 }
 
 .visuallyHiddenText {

@@ -2,12 +2,12 @@ import classNames from "classnames";
 
 import { useAppSelector } from "%store";
 import {
-  selectSpecialistAverageRating,
   selectSpecialistFullName,
   type Specialist,
 } from "%store/specialistsSlice";
 
 import { IconButton } from "../IconButton";
+import { RatingPanel } from "../RatingPanel";
 import styles from "./Specialist.module.css";
 
 interface SpecialistProps {
@@ -17,9 +17,6 @@ interface SpecialistProps {
 function Specialist({ specialist }: SpecialistProps) {
   const fullName = useAppSelector((state) =>
     selectSpecialistFullName(state, specialist.id),
-  );
-  const ratingAverage = useAppSelector((state) =>
-    selectSpecialistAverageRating(state, specialist.id),
   );
   const photoAlt = `${fullName}'s photograph`;
 
@@ -77,15 +74,7 @@ function Specialist({ specialist }: SpecialistProps) {
           Book a visit
         </button>
       </div>
-      <div className={styles.ratingsPanel}>
-        <button>Rate 1 star</button>
-        <button>Rate 2 stars</button>
-        <button>Rate 3 stars</button>
-        <button>Rate 4 stars</button>
-        <button>Rate 5 stars</button>
-        <h3>{ratingAverage}</h3>
-        <h4>{specialist.rating.count}</h4>
-      </div>
+      <RatingPanel className={styles.ratingsPanel} specialist={specialist} />
     </li>
   );
 }
