@@ -11,9 +11,9 @@ type Page = "all" | "favorites";
 type SpecialistsRecord = Record<Specialist["id"], Specialist>;
 
 interface SpecialistsSliceState {
-  specialists: SpecialistsRecord;
   page: Page;
   searchQuery: string;
+  specialists: SpecialistsRecord;
 }
 
 const initialState: SpecialistsSliceState = {

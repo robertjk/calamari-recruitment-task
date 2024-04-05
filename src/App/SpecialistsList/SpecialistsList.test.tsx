@@ -1,12 +1,32 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { expect, test } from "vitest";
+
+import { renderWithStore } from "%store/utils/renderWithStore";
 
 import { SpecialistsList } from "./SpecialistsList";
 
-test("renders the component", () => {
-  render(<SpecialistsList />);
+test("Renders specialists tiles", () => {
+  renderWithStore(<SpecialistsList />);
 
-  const text = screen.getByText(/No specialists to display/i);
+  const specialistNewsom = screen.getByText("Joanna Newsom");
+  const specialistMcNulty = screen.getByText("James McNulty");
+
+  expect(specialistNewsom).toBeVisible();
+  expect(specialistMcNulty).toBeVisible();
+});
+
+test("Renders the text with no specialists", () => {
+  renderWithStore(<SpecialistsList />, {
+    preloadedState: {
+      specialists: {
+        page: "all",
+        searchQuery: "",
+        specialists: {},
+      },
+    },
+  });
+
+  const text = screen.getByText(/No specialists to show/i);
 
   expect(text).toBeInTheDocument();
 });

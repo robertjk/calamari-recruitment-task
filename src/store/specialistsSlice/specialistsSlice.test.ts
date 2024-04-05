@@ -3,68 +3,53 @@ import { beforeEach, expect, test } from "vitest";
 import { type AppStore, makeStore } from "%store";
 
 import {
+  addSpecialists,
   selectPage,
   selectSearchQuery,
   selectSpecialists,
   setPage,
   setSearchQuery,
-  setSpecialists,
   specialistsSlice,
   type SpecialistsSliceState,
 } from "./specialistsSlice";
+
+const initialState: SpecialistsSliceState = {
+  page: "all",
+  searchQuery: "",
+  specialists: {},
+};
 
 interface LocalTestContext {
   store: AppStore;
 }
 
 beforeEach<LocalTestContext>((context) => {
-  const initialState: SpecialistsSliceState = {
-    page: "all",
-    searchQuery: "",
-    specialists: [],
-  };
   context.store = makeStore({ specialists: initialState });
 });
 
 test<LocalTestContext>("Properly initializes the store", () => {
   expect(
-    specialistsSlice.reducer(undefined, { type: "unknown" }),
+    specialistsSlice.reducer(initialState, { type: "unknown" }),
   ).toStrictEqual({
     page: "all",
     searchQuery: "",
-    specialists: [],
+    specialists: {},
   });
 });
 
-test<LocalTestContext>("Properly handles setPage action", ({ store }) => {
-  expect(selectPage(store.getState())).toBe("all");
-
-  store.dispatch(setPage("favorites"));
-
-  expect(selectPage(store.getState())).toBe("favorites");
-});
-
-test<LocalTestContext>("Properly handles setSearchQuery action", ({
-  store,
-}) => {
-  expect(selectSearchQuery(store.getState())).toBe("");
-
-  store.dispatch(setSearchQuery("something"));
-
-  expect(selectSearchQuery(store.getState())).toBe("something");
-});
-
-test<LocalTestContext>("Properly handles setSpecialists action", ({
+test<LocalTestContext>("Properly handles specialists being added", ({
   store,
 }) => {
   expect(selectSpecialists(store.getState())).toStrictEqual([]);
 
   store.dispatch(
-    setSpecialists([
+    addSpecialists([
       {
-        name: "John Doe",
+        id: 1,
+        name: "John",
+        surname: "Doe",
         profession: "magician",
-        photo: "http://some.server.com/photo.jpg",
+        photoUrl: "http://some.server.com/photo.jpg",
         rating: {
           sum: 11,
           count: 3,
@@ -75,13 +60,33 @@ test<LocalTestContext>("Properly handles setSpecialists action", ({
 
   expect(selectSpecialists(store.getState())).toStrictEqual([
     {
-      name: "John Doe",
+      id: 1,
+      name: "John",
+      surname: "Doe",
       profession: "magician",
-      photo: "http://some.server.com/photo.jpg",
+      photoUrl: "http://some.server.com/photo.jpg",
       rating: {
         sum: 11,
         count: 3,
       },
     },
   ]);
+});
+
+test<LocalTestContext>("Properly handles page being set", ({ store }) => {
+  expect(selectPage(store.getState())).toBe("all");
+
+  store.dispatch(setPage("favorites"));
+
+  expect(selectPage(store.getState())).toBe("favorites");
+});
+
+test<LocalTestContext>("Properly handles search query being set", ({
+  store,
+}) => {
+  expect(selectSearchQuery(store.getState())).toBe("");
+
+  store.dispatch(setSearchQuery("something"));
+
+  expect(selectSearchQuery(store.getState())).toBe("something");
 });
