@@ -33,4 +33,4 @@ function IconButton({
   );
 }
 
-export { IconButton };
+export { IconButton, type IconButtonProps };
