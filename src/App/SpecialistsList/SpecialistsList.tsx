@@ -1,11 +1,11 @@
 import { useAppSelector } from "%store";
-import { selectSpecialistsCurrentPage } from "%store/specialistsSlice";
+import { selectDisplayedSpecialists } from "%store/specialistsSlice";
 
 import { Specialist } from "./Specialist";
 import styles from "./SpecialistsList.module.css";
 
 function SpecialistsList() {
-  const specialists = useAppSelector(selectSpecialistsCurrentPage);
+  const specialists = useAppSelector(selectDisplayedSpecialists);
 
   const noSpecialists = specialists.length === 0;
 

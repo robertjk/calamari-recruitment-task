@@ -30,13 +30,29 @@ const initialState: SpecialistsSliceState = {
   specialistsFavorite: [],
 };
 
-const selectPage = (state: SpecialistsSliceState) => state.page;
+function selectPage(state: SpecialistsSliceState) {
+  return state.page;
+}
+
+function selectSearchQuery(state: SpecialistsSliceState) {
+  return state.searchQuery;
+}
+
 const selectSpecialistsAll = createSelector(
   (state: SpecialistsSliceState) => state.specialistsAll,
-  (specialists) => Object.values(specialists),
+  (specialistsAll) => Object.values(specialistsAll),
 );
-const selectSpecialistsFavorite = (state: SpecialistsSliceState) =>
-  state.specialistsFavorite;
+
+function selectSpecialistsFavorite(state: SpecialistsSliceState) {
+  return state.specialistsFavorite;
+}
+
+// Defined as a separate function, as I haven't found a way to call
+// selectSpecialistFullName inside of createSelector() for
+// selectDisplayedSpecialists
+function specialistFullName(specialist: Specialist) {
+  return `${specialist.name} ${specialist.surname}`;
+}
 
 const specialistsSlice = createSlice({
   name: "specialists",
@@ -81,28 +97,42 @@ const specialistsSlice = createSlice({
       state.specialistsFavorite.some(
         (favoriteSpecialist) => favoriteSpecialist.id === specialist.id,
       ),
-    selectPage: selectPage,
+    selectPage,
     selectSpecialistAverageRating: (state, id: Specialist["id"]) => {
       const specialist = state.specialistsAll[id];
       return specialist.rating.sum / specialist.rating.count;
     },
     selectSpecialistFullName: (state, id: Specialist["id"]) => {
       const specialist = state.specialistsAll[id];
-      return `${specialist.name} ${specialist.surname}`;
+      return specialistFullName(specialist);
     },
-    selectSpecialistsAll: selectSpecialistsAll,
-    selectSpecialistsFavorite: selectSpecialistsFavorite,
-    selectSpecialistsCurrentPage: createSelector(
-      [selectPage, selectSpecialistsAll, selectSpecialistsFavorite],
-      (page, specialistsAll, specialistsFavorite) => {
-        if (page === "all") {
-          return specialistsAll;
-        } else {
-          return specialistsFavorite;
+    selectSpecialistsAll,
+    selectSpecialistsFavorite,
+    selectSearchQuery,
+    selectDisplayedSpecialists: createSelector(
+      selectPage,
+      selectSearchQuery,
+      selectSpecialistsAll,
+      selectSpecialistsFavorite,
+      (
+        page,
+        searchQuery,
+        specialistsAll,
+        specialistsFavorite,
+      ): Specialist[] => {
+        function matchSpecialistToQuery(specialist: Specialist) {
+          const queryRegExp = new RegExp(searchQuery, "i");
+          return (
+            queryRegExp.test(specialistFullName(specialist)) ||
+            queryRegExp.test(specialist.profession)
+          );
         }
+
+        const specialists =
+          page === "all" ? specialistsAll : specialistsFavorite;
+        return specialists.filter(matchSpecialistToQuery);
       },
     ),
-    selectSearchQuery: (state) => state.searchQuery,
   },
 });
 
@@ -115,12 +145,12 @@ const {
 } = specialistsSlice.actions;
 
 const {
+  selectDisplayedSpecialists,
   selectIsSpecialistInFavorites,
   selectPage: selectPageExport,
+  selectSearchQuery: selectSearchQueryExport,
   selectSpecialistAverageRating,
   selectSpecialistFullName,
-  selectSpecialistsCurrentPage,
-  selectSearchQuery,
 } = specialistsSlice.selectors;
 
 export {
@@ -128,12 +158,12 @@ export {
   addSpecialists,
   type Page,
   removeFavoriteSpecialist,
+  selectDisplayedSpecialists,
   selectIsSpecialistInFavorites,
   selectPageExport as selectPage,
-  selectSearchQuery,
+  selectSearchQueryExport as selectSearchQuery,
   selectSpecialistAverageRating,
   selectSpecialistFullName,
-  selectSpecialistsCurrentPage,
   setPage,
   setSearchQuery,
   type Specialist,
