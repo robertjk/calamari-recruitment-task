@@ -13,7 +13,7 @@ type Icon =
   | "threeDots";
 
 interface IconButtonProps {
-  children: ReactNode;
+  children: string;
   className?: string;
   icon: Icon;
   onClick?: (event: MouseEvent) => void;
@@ -28,12 +28,13 @@ function IconButton({
   title = "",
 }: IconButtonProps) {
   const iconClassName = styles[`icon_${icon}`];
+  const titleAttr = title || children;
 
   return (
     <button
       className={classNames(styles.root, iconClassName, className)}
       onClick={onClick}
-      title={title}
+      title={titleAttr}
     >
       <span className={styles.visuallyHiddenText}>{children}</span>
     </button>

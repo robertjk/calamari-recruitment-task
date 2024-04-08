@@ -1,7 +1,10 @@
 import classNames from "classnames";
 
-import { useAppSelector } from "%store";
+import { useAppDispatch, useAppSelector } from "%store";
 import {
+  addFavoriteSpecialist,
+  removeFavoriteSpecialist,
+  selectIsSpecialistInFavorites,
   selectSpecialistFullName,
   type Specialist,
 } from "%store/specialistsSlice";
@@ -15,10 +18,27 @@ interface SpecialistProps {
 }
 
 function Specialist({ specialist }: SpecialistProps) {
+  const dispatch = useAppDispatch();
+
   const fullName = useAppSelector((state) =>
     selectSpecialistFullName(state, specialist.id),
   );
   const photoAlt = `${fullName}'s photograph`;
+
+  const isInFavorites = useAppSelector((state) =>
+    selectIsSpecialistInFavorites(state, specialist),
+  );
+  const favoritesButtonText = isInFavorites
+    ? "Remove from favorites"
+    : "Add to favorites";
+
+  function handleFavoritesClick() {
+    if (isInFavorites) {
+      dispatch(removeFavoriteSpecialist(specialist));
+    } else {
+      dispatch(addFavoriteSpecialist(specialist));
+    }
+  }
 
   return (
     <li className={styles.root}>
@@ -29,9 +49,9 @@ function Specialist({ specialist }: SpecialistProps) {
         <IconButton
           className={styles.favorites}
           icon="heart"
-          title="This functionality doesn't work yet"
+          onClick={handleFavoritesClick}
         >
-          Add to favorites
+          {favoritesButtonText}
         </IconButton>
         <IconButton
           className={styles.more}
