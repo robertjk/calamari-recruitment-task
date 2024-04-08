@@ -30,6 +30,14 @@ const initialState: SpecialistsSliceState = {
   specialistsFavorite: [],
 };
 
+const selectPage = (state: SpecialistsSliceState) => state.page;
+const selectSpecialistsAll = createSelector(
+  (state: SpecialistsSliceState) => state.specialistsAll,
+  (specialists) => Object.values(specialists),
+);
+const selectSpecialistsFavorite = (state: SpecialistsSliceState) =>
+  state.specialistsFavorite;
+
 const specialistsSlice = createSlice({
   name: "specialists",
   initialState,
@@ -73,7 +81,7 @@ const specialistsSlice = createSlice({
       state.specialistsFavorite.some(
         (favoriteSpecialist) => favoriteSpecialist.id === specialist.id,
       ),
-    selectPage: (state) => state.page,
+    selectPage: selectPage,
     selectSpecialistAverageRating: (state, id: Specialist["id"]) => {
       const specialist = state.specialistsAll[id];
       return specialist.rating.sum / specialist.rating.count;
@@ -82,11 +90,18 @@ const specialistsSlice = createSlice({
       const specialist = state.specialistsAll[id];
       return `${specialist.name} ${specialist.surname}`;
     },
-    selectSpecialistsAll: createSelector(
-      (state: SpecialistsSliceState) => state.specialistsAll,
-      (specialists) => Object.values(specialists),
+    selectSpecialistsAll: selectSpecialistsAll,
+    selectSpecialistsFavorite: selectSpecialistsFavorite,
+    selectSpecialistsCurrentPage: createSelector(
+      [selectPage, selectSpecialistsAll, selectSpecialistsFavorite],
+      (page, specialistsAll, specialistsFavorite) => {
+        if (page === "all") {
+          return specialistsAll;
+        } else {
+          return specialistsFavorite;
+        }
+      },
     ),
-    selectSpecialistsFavorite: (state) => state.specialistsFavorite,
     selectSearchQuery: (state) => state.searchQuery,
   },
 });
@@ -101,11 +116,10 @@ const {
 
 const {
   selectIsSpecialistInFavorites,
-  selectPage,
+  selectPage: selectPageExport,
   selectSpecialistAverageRating,
   selectSpecialistFullName,
-  selectSpecialistsAll,
-  selectSpecialistsFavorite,
+  selectSpecialistsCurrentPage,
   selectSearchQuery,
 } = specialistsSlice.selectors;
 
@@ -115,12 +129,11 @@ export {
   type Page,
   removeFavoriteSpecialist,
   selectIsSpecialistInFavorites,
-  selectPage,
+  selectPageExport as selectPage,
   selectSearchQuery,
   selectSpecialistAverageRating,
   selectSpecialistFullName,
-  selectSpecialistsAll,
-  selectSpecialistsFavorite,
+  selectSpecialistsCurrentPage,
   setPage,
   setSearchQuery,
   type Specialist,

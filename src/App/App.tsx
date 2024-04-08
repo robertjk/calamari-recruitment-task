@@ -1,5 +1,10 @@
 import { useAppSelector } from "%store";
-import { selectPage, selectSpecialistsAll } from "%store/specialistsSlice";
+import {
+  selectPage,
+  selectSpecialistsAll,
+  selectSpecialistsCurrentPage,
+  selectSpecialistsFavorite,
+} from "%store/specialistsSlice";
 
 import styles from "./App.module.css";
 import { PAGE_TITLES, PageSelect } from "./PageSelect";
@@ -8,7 +13,7 @@ import { SpecialistsList } from "./SpecialistsList";
 
 function App() {
   const page = useAppSelector(selectPage);
-  const specialists = useAppSelector(selectSpecialistsAll);
+  const specialists = useAppSelector(selectSpecialistsCurrentPage);
 
   const specialistsCount = specialists.length;
   const pageTitle = `${PAGE_TITLES[page]} (${String(specialistsCount)})`;

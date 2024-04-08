@@ -9,8 +9,7 @@ import {
   selectIsSpecialistInFavorites,
   selectPage,
   selectSearchQuery,
-  selectSpecialistsAll,
-  selectSpecialistsFavorite,
+  selectSpecialistsCurrentPage,
   setPage,
   setSearchQuery,
   specialistsSlice,
@@ -46,7 +45,7 @@ test<LocalTestContext>("Properly initializes the store", () => {
 test<LocalTestContext>("Properly handles specialists being added", ({
   store,
 }) => {
-  expect(selectSpecialistsAll(store.getState())).toStrictEqual([]);
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([]);
 
   store.dispatch(
     addSpecialists([
@@ -64,7 +63,7 @@ test<LocalTestContext>("Properly handles specialists being added", ({
     ]),
   );
 
-  expect(selectSpecialistsAll(store.getState())).toStrictEqual([
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([
     {
       id: 1,
       name: "John",
@@ -80,11 +79,28 @@ test<LocalTestContext>("Properly handles specialists being added", ({
 });
 
 test<LocalTestContext>("Properly handles page being set", ({ store }) => {
+  const specialistAdded1 = {
+    id: 1,
+    name: "John",
+    surname: "Doe",
+    profession: "magician",
+    photoUrl: "http://some.server.com/photo.jpg",
+    rating: {
+      sum: 11,
+      count: 3,
+    },
+  };
+
   expect(selectPage(store.getState())).toBe("all");
 
-  store.dispatch(setPage("favorites"));
+  store.dispatch(addSpecialists([specialistAdded1]));
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([
+    specialistAdded1,
+  ]);
 
+  store.dispatch(setPage("favorites"));
   expect(selectPage(store.getState())).toBe("favorites");
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([]);
 });
 
 test<LocalTestContext>("Properly handles search query being set", ({
@@ -100,7 +116,7 @@ test<LocalTestContext>("Properly handles search query being set", ({
 test<LocalTestContext>("Properly adds and removes specialists from favorites", ({
   store,
 }) => {
-  const specialistToAdd1 = {
+  const specialistAdded1 = {
     id: 1,
     name: "John",
     surname: "Doe",
@@ -111,7 +127,7 @@ test<LocalTestContext>("Properly adds and removes specialists from favorites", (
       count: 3,
     },
   };
-  const specialistToAdd2 = {
+  const specialistAdded2 = {
     id: 2,
     name: "Maria",
     surname: "Jimenez",
@@ -123,50 +139,51 @@ test<LocalTestContext>("Properly adds and removes specialists from favorites", (
     },
   };
 
-  expect(selectSpecialistsFavorite(store.getState())).toStrictEqual([]);
+  store.dispatch(setPage("favorites"));
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([]);
 
-  store.dispatch(addFavoriteSpecialist(specialistToAdd1));
-  expect(selectSpecialistsFavorite(store.getState())).toStrictEqual([
-    specialistToAdd1,
+  store.dispatch(addFavoriteSpecialist(specialistAdded1));
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([
+    specialistAdded1,
   ]);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd1),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded1),
   ).toBe(true);
 
-  store.dispatch(addFavoriteSpecialist(specialistToAdd2));
-  expect(selectSpecialistsFavorite(store.getState())).toStrictEqual([
-    specialistToAdd1,
-    specialistToAdd2,
+  store.dispatch(addFavoriteSpecialist(specialistAdded2));
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([
+    specialistAdded1,
+    specialistAdded2,
   ]);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd1),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded1),
   ).toBe(true);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd2),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded2),
   ).toBe(true);
 
-  store.dispatch(removeFavoriteSpecialist(specialistToAdd1));
-  expect(selectSpecialistsFavorite(store.getState())).toStrictEqual([
-    specialistToAdd2,
+  store.dispatch(removeFavoriteSpecialist(specialistAdded1));
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([
+    specialistAdded2,
   ]);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd1),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded1),
   ).toBe(false);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd2),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded2),
   ).toBe(true);
 
-  store.dispatch(removeFavoriteSpecialist(specialistToAdd2));
-  expect(selectSpecialistsFavorite(store.getState())).toStrictEqual([]);
+  store.dispatch(removeFavoriteSpecialist(specialistAdded2));
+  expect(selectSpecialistsCurrentPage(store.getState())).toStrictEqual([]);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd1),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded1),
   ).toBe(false);
   expect(
-    selectIsSpecialistInFavorites(store.getState(), specialistToAdd2),
+    selectIsSpecialistInFavorites(store.getState(), specialistAdded2),
   ).toBe(false);
 
   assert.throws(
-    () => store.dispatch(removeFavoriteSpecialist(specialistToAdd2)),
+    () => store.dispatch(removeFavoriteSpecialist(specialistAdded2)),
     /No specialist with ID/,
   );
 });
