@@ -13,16 +13,21 @@ type SpecialistsRecord = Record<Specialist["id"], Specialist>;
 interface SpecialistsSliceState {
   page: Page;
   searchQuery: string;
-  specialists: SpecialistsRecord;
+  specialistsAll: SpecialistsRecord;
+  specialistsFavorite: Specialist[];
 }
 
 const initialState: SpecialistsSliceState = {
   page: "all",
   searchQuery: "",
-  specialists: specialists.reduce<SpecialistsRecord>((record, specialist) => {
-    record[specialist.id] = specialist;
-    return record;
-  }, {}),
+  specialistsAll: specialists.reduce<SpecialistsRecord>(
+    (record, specialist) => {
+      record[specialist.id] = specialist;
+      return record;
+    },
+    {},
+  ),
+  specialistsFavorite: [],
 };
 
 const specialistsSlice = createSlice({
@@ -31,8 +36,30 @@ const specialistsSlice = createSlice({
   reducers: {
     addSpecialists(state, action: PayloadAction<Specialist[]>) {
       action.payload.forEach((specialist) => {
-        state.specialists[specialist.id] = specialist;
+        state.specialistsAll[specialist.id] = specialist;
       });
+    },
+    addFavoriteSpecialist(state, action: PayloadAction<Specialist>) {
+      const specialistToAdd = action.payload;
+      const alreadyInFavorites = state.specialistsFavorite.some(
+        (favoriteSpecialist) => favoriteSpecialist.id === specialistToAdd.id,
+      );
+      if (!alreadyInFavorites) {
+        state.specialistsFavorite.push(specialistToAdd);
+      }
+    },
+    removeFavoriteSpecialist(state, action: PayloadAction<Specialist>) {
+      const specialistToRemove = action.payload;
+      const indexToRemove = state.specialistsFavorite.findIndex(
+        (favoriteSpecialist) => favoriteSpecialist.id === specialistToRemove.id,
+      );
+      if (indexToRemove === -1) {
+        throw new TypeError(
+          `No specialist with ID ${specialistToRemove.id.toString()} in favorites`,
+        );
+      } else {
+        state.specialistsFavorite.splice(indexToRemove, 1);
+      }
     },
     setPage(state, action: PayloadAction<Page>) {
       state.page = action.payload;
@@ -42,41 +69,58 @@ const specialistsSlice = createSlice({
     },
   },
   selectors: {
+    selectIsSpecialistInFavorites: (state, specialist: Specialist) =>
+      state.specialistsFavorite.some(
+        (favoriteSpecialist) => favoriteSpecialist.id === specialist.id,
+      ),
     selectPage: (state) => state.page,
     selectSpecialistAverageRating: (state, id: Specialist["id"]) => {
-      const specialist = state.specialists[id];
+      const specialist = state.specialistsAll[id];
       return specialist.rating.sum / specialist.rating.count;
     },
     selectSpecialistFullName: (state, id: Specialist["id"]) => {
-      const specialist = state.specialists[id];
+      const specialist = state.specialistsAll[id];
       return `${specialist.name} ${specialist.surname}`;
     },
-    selectSpecialists: createSelector(
-      (state: SpecialistsSliceState) => state.specialists,
+    selectSpecialistsAll: createSelector(
+      (state: SpecialistsSliceState) => state.specialistsAll,
       (specialists) => Object.values(specialists),
     ),
+    selectSpecialistsFavorite: (state) => state.specialistsFavorite,
     selectSearchQuery: (state) => state.searchQuery,
   },
 });
 
-const { addSpecialists, setPage, setSearchQuery } = specialistsSlice.actions;
+const {
+  addSpecialists,
+  addFavoriteSpecialist,
+  setPage,
+  removeFavoriteSpecialist,
+  setSearchQuery,
+} = specialistsSlice.actions;
 
 const {
+  selectIsSpecialistInFavorites,
   selectPage,
   selectSpecialistAverageRating,
   selectSpecialistFullName,
-  selectSpecialists,
+  selectSpecialistsAll,
+  selectSpecialistsFavorite,
   selectSearchQuery,
 } = specialistsSlice.selectors;
 
 export {
+  addFavoriteSpecialist,
   addSpecialists,
   type Page,
+  removeFavoriteSpecialist,
+  selectIsSpecialistInFavorites,
   selectPage,
   selectSearchQuery,
   selectSpecialistAverageRating,
   selectSpecialistFullName,
-  selectSpecialists,
+  selectSpecialistsAll,
+  selectSpecialistsFavorite,
   setPage,
   setSearchQuery,
   type Specialist,

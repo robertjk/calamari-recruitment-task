@@ -21,7 +21,7 @@ test("Renders the text with no specialists", () => {
       specialists: {
         page: "all",
         searchQuery: "",
-        specialists: {},
+        specialistsAll: {},
       },
     },
   });
