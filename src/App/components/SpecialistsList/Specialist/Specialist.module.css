@@ -4,7 +4,7 @@
   display: grid;
   /* prettier-ignore */
   grid-template:
-    "dots       .          .          .          .          favorites"  3.2rem
+    "dots       .          .          .          .          favorite"   3.2rem
     ".          .          photo      photo      .          ."          10.0rem
     ".          .          .          .          .          ."          2.4rem
     "name       name       name       name       name       name"       1.5rem
@@ -46,12 +46,24 @@
   display: contents;
 }
 
-.favorites {
-  grid-area: favorites;
+.favorite {
+  grid-area: favorite;
+
+  &:hover {
+    border-radius: 1rem;
+    box-shadow: inset 0px 3px 16px 0 rgba(216, 220, 237, 0.35);
+  }
 }
 
 .more {
   grid-area: dots;
+  border-radius: 0.4rem;
+  width: 4rem;
+  height: 3.2rem;
+
+  &:hover {
+    background-color: rgba(243, 245, 252, 1);
+  }
 }
 
 .alert {

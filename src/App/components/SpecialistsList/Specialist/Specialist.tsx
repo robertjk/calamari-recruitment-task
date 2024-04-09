@@ -28,9 +28,10 @@ function Specialist({ specialist }: SpecialistProps) {
   const isInFavorites = useAppSelector((state) =>
     selectIsSpecialistInFavorites(state, specialist),
   );
-  const favoritesButtonText = isInFavorites
+  const favoriteButtonText = isInFavorites
     ? "Remove from favorites"
     : "Add to favorites";
+  const favoriteButtonIcon = isInFavorites ? "heartFilled" : "heartClear";
 
   function handleFavoritesClick() {
     if (isInFavorites) {
@@ -47,11 +48,11 @@ function Specialist({ specialist }: SpecialistProps) {
       <img src={specialist.photoUrl} alt={photoAlt} className={styles.photo} />
       <div className={styles.actions}>
         <IconButton
-          className={styles.favorites}
-          icon="heart"
+          className={styles.favorite}
+          icon={favoriteButtonIcon}
           onClick={handleFavoritesClick}
         >
-          {favoritesButtonText}
+          {favoriteButtonText}
         </IconButton>
         <IconButton
           className={styles.more}

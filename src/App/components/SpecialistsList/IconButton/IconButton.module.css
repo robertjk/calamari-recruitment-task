@@ -8,8 +8,12 @@
     cursor: pointer;
   }
 
-  &.icon_heart {
-    background-image: url("./icons/icon-heart.svg");
+  &.icon_heartClear {
+    background-image: url("./icons/icon-heart-clear.svg");
+  }
+
+  &.icon_heartFilled {
+    background-image: url("./icons/icon-heart-filled.svg");
   }
 
   &.icon_threeDots {

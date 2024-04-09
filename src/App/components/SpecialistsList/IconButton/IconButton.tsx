@@ -6,7 +6,8 @@ import styles from "./IconButton.module.css";
 type Icon =
   | "bell"
   | "calendar"
-  | "heart"
+  | "heartClear"
+  | "heartFilled"
   | "mail"
   | "starClear"
   | "starFilled"
