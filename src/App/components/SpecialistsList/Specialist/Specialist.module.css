@@ -62,7 +62,17 @@
   height: 3.2rem;
 
   &:hover {
-    background-color: rgba(243, 245, 252, 1);
+    background-color: var(--color-grey-medium);
+  }
+}
+
+.tileButton {
+  height: 100%;
+  width: 100%;
+
+  &:hover {
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid var(--color-blue);
   }
 }
 

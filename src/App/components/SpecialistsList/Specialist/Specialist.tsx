@@ -62,21 +62,21 @@ function Specialist({ specialist }: SpecialistProps) {
           More
         </IconButton>
         <IconButton
-          className={styles.alert}
+          className={classNames(styles.tileButton, styles.alert)}
           icon="bell"
           title="This functionality doesn't work yet"
         >
           Set alert
         </IconButton>
         <IconButton
-          className={styles.calendar}
+          className={classNames(styles.tileButton, styles.calendar)}
           icon="calendar"
           title="This functionality doesn't work yet"
         >
           Calendar
         </IconButton>
         <IconButton
-          className={styles.message}
+          className={classNames(styles.tileButton, styles.message)}
           icon="mail"
           title="This functionality doesn't work yet"
         >
