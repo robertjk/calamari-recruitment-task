@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { type MouseEvent, type ReactNode } from "react";
+import { type MouseEvent } from "react";
 
 import styles from "./IconButton.module.css";
 
