@@ -4,7 +4,7 @@ import { expect, test } from "vitest";
 import { renderWithStore } from "%store/utils/renderWithStore";
 
 import { App } from "./App";
-import { PAGE_TITLES } from "./PageSelect";
+import { PAGE_TITLES } from "./components/PageSelect";
 
 test("Renders properly the default page", () => {
   renderWithStore(<App />);

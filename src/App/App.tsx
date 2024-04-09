@@ -1,3 +1,6 @@
+import { PAGE_TITLES, PageSelect } from "%components/PageSelect";
+import { SearchInput } from "%components/SearchInput";
+import { SpecialistsList } from "%components/SpecialistsList";
 import { useAppSelector } from "%store";
 import {
   selectDisplayedSpecialists,
@@ -5,16 +8,13 @@ import {
 } from "%store/specialistsSlice";
 
 import styles from "./App.module.css";
-import { PAGE_TITLES, PageSelect } from "./PageSelect";
-import { SearchInput } from "./SearchInput";
-import { SpecialistsList } from "./SpecialistsList";
 
 function App() {
   const page = useAppSelector(selectPage);
   const specialists = useAppSelector(selectDisplayedSpecialists);
 
   const specialistsCount = specialists.length;
-  const pageTitle = `${PAGE_TITLES[page]} (${String(specialistsCount)})`;
+  const pageTitle = `${PAGE_TITLES[page]} (${specialistsCount.toString()})`;
 
   return (
     <div className={styles.root}>

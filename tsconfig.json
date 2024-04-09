@@ -8,6 +8,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "%components": ["src/app/components/"],
+      "%components/*": ["src/app/components/*"],
       "%store": ["src/store/"],
       "%store/*": ["src/store/*"]
     },
