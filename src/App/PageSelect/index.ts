@@ -1,2 +1,2 @@
-export { PageSelect } from "./PageSelect";
-export { PAGE_TITLES } from "./pageTitles";
+export * from "./PageSelect";
+export * from "./pageTitles";
