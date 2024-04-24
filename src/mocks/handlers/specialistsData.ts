@@ -1,16 +1,6 @@
-interface Specialist {
-  id: number;
-  name: string;
-  surname: string;
-  profession: string;
-  photoUrl?: string;
-  rating: {
-    sum: number;
-    count: number;
-  };
-}
+import { type SpecialistResponse } from "%store/apiSlice/apiSlice";
 
-const specialists: Specialist[] = [
+const specialistsData: SpecialistResponse[] = [
   {
     id: 1,
     name: "John",
@@ -22,6 +12,7 @@ const specialists: Specialist[] = [
       sum: 293,
       count: 120,
     },
+    favorite: false,
   },
   {
     id: 2,
@@ -34,6 +25,7 @@ const specialists: Specialist[] = [
       sum: 1530,
       count: 360,
     },
+    favorite: false,
   },
   {
     id: 3,
@@ -46,6 +38,7 @@ const specialists: Specialist[] = [
       sum: 88,
       count: 18,
     },
+    favorite: false,
   },
   {
     id: 4,
@@ -57,6 +50,7 @@ const specialists: Specialist[] = [
       sum: 5818,
       count: 1181,
     },
+    favorite: false,
   },
   {
     id: 5,
@@ -68,7 +62,8 @@ const specialists: Specialist[] = [
       sum: 231,
       count: 51,
     },
+    favorite: false,
   },
 ];
 
-export { type Specialist, specialists };
+export { specialistsData };

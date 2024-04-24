@@ -10,6 +10,8 @@
     "paths": {
       "%components": ["src/app/components/"],
       "%components/*": ["src/app/components/*"],
+      "%mocks": ["src/mocks/"],
+      "%mocks/*": ["src/mocks/*"],
       "%store": ["src/store/"],
       "%store/*": ["src/store/*"]
     },

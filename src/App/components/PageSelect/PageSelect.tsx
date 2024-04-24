@@ -1,26 +1,20 @@
 import classNames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "%store";
-import { type Page, selectPage, setPage } from "%store/specialistsSlice";
-
 import styles from "./PageSelect.module.css";
 import { PAGE_TITLES } from "./pageTitles";
 
+type Page = "all" | "favorites";
+
 interface PageSelectProps {
   className?: string;
+  onChange: (newValue: Page) => void;
+  value: Page;
 }
 
-function PageSelect({ className }: PageSelectProps) {
-  const dispatch = useAppDispatch();
-  const page = useAppSelector(selectPage);
-
-  const createHandleChange = (newPage: Page) => () => {
-    dispatch(setPage(newPage));
-  };
-
+function PageSelect({ className, onChange, value }: PageSelectProps) {
   const buttonClassName = (buttonPage: Page) =>
     classNames(styles.button, {
-      [styles.isChecked]: page === buttonPage,
+      [styles.isChecked]: value === buttonPage,
     });
 
   return (
@@ -31,8 +25,10 @@ function PageSelect({ className }: PageSelectProps) {
           type="radio"
           name="page"
           value="all"
-          checked={page === "all"}
-          onChange={createHandleChange("all")}
+          checked={value === "all"}
+          onChange={() => {
+            onChange("all");
+          }}
           className={styles.input}
         />
       </label>
@@ -42,8 +38,10 @@ function PageSelect({ className }: PageSelectProps) {
           type="radio"
           name="page"
           value="favorites"
-          checked={page === "favorites"}
-          onChange={createHandleChange("favorites")}
+          checked={value === "favorites"}
+          onChange={() => {
+            onChange("favorites");
+          }}
           className={styles.input}
         />
       </label>
@@ -51,4 +49,4 @@ function PageSelect({ className }: PageSelectProps) {
   );
 }
 
-export { PageSelect };
+export { PageSelect, type Page };

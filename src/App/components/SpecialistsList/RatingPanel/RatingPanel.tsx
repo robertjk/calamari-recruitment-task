@@ -1,10 +1,6 @@
 import classNames from "classnames";
 
-import { useAppSelector } from "%store/index";
-import {
-  selectSpecialistAverageRating,
-  type Specialist,
-} from "%store/specialistsSlice";
+import { type Specialist } from "%store/apiSlice/apiSlice";
 
 import { IconButton } from "../IconButton";
 import styles from "./RatingPanel.module.css";
@@ -15,10 +11,7 @@ interface RatingPanelProps {
 }
 
 function RatingPanel({ className, specialist }: RatingPanelProps) {
-  const ratingAverage = useAppSelector((state) =>
-    selectSpecialistAverageRating(state, specialist.id),
-  );
-  const ratingAverageRounded = Number(ratingAverage.toFixed(1));
+  const ratingAverageRounded = Number(specialist.ratingAverage.toFixed(1));
 
   return (
     <div className={classNames(styles.root, className)}>

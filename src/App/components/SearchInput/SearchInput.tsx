@@ -1,22 +1,18 @@
 import classNames from "classnames";
 import { ChangeEvent } from "react";
 
-import { useAppDispatch, useAppSelector } from "%store";
-import { selectSearchQuery, setSearchQuery } from "%store/specialistsSlice";
-
 import styles from "./SearchInput.module.css";
 
 interface SearchInputProps {
   className?: string;
+  onChange: (newValue: string) => void;
+  value: string;
 }
 
-function SearchInput({ className }: SearchInputProps) {
-  const dispatch = useAppDispatch();
-  const searchQuery = useAppSelector(selectSearchQuery);
-
+function SearchInput({ className, onChange, value }: SearchInputProps) {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newSearchPhrase = event.target.value;
-    dispatch(setSearchQuery(newSearchPhrase));
+    onChange(newSearchPhrase);
   }
 
   return (
@@ -24,7 +20,7 @@ function SearchInput({ className }: SearchInputProps) {
       type="search"
       name="searchText"
       placeholder="Search..."
-      value={searchQuery}
+      value={value}
       onChange={handleChange}
       className={classNames(className, styles.root)}
     />

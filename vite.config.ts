@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "%components": path.resolve(__dirname, "src/app/components"),
+      "%mocks": path.resolve(__dirname, "src/mocks"),
       "%store": path.resolve(__dirname, "src/store"),
     },
   },
