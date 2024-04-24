@@ -4,9 +4,13 @@ import { Page } from "%components/PageSelect";
 
 import { type Specialist, type SpecialistResponse } from "./specialist";
 
+// RTK Query doesn't support relative URL-s in Node test environment
+const baseUrl =
+  process.env.NODE_ENV === "test" ? `${location.href}fakeApi` : "/fakeApi";
+
 const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "/fakeApi" }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ["Specialist"],
   endpoints: (builder) => ({
     getSpecialists: builder.query<
@@ -15,10 +19,7 @@ const apiSlice = createApi({
     >({
       query: ({ type, searchQuery }) => ({
         url: `/specialists`,
-        params: {
-          type,
-          searchQuery,
-        },
+        params: searchQuery ? { type, searchQuery } : { type },
       }),
       transformResponse: (response: SpecialistResponse[]): Specialist[] => {
         return response.map((specialist) => ({
