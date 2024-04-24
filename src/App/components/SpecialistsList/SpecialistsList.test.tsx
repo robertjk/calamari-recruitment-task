@@ -17,7 +17,7 @@ test("Renders proper text on error", () => {
   const error = new Error("Some error");
   renderWithStore(<SpecialistsList error={error} isError isLoading={false} />);
 
-  const errorText = screen.getByText(/Error/i);
+  const errorText = screen.getByText(/Error loading/i);
 
   expect(errorText).toBeInTheDocument();
 });
