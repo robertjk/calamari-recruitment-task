@@ -1,5 +1,6 @@
-import { specialistsHandlers } from "./specialistsHandlers";
+import { imagesHandlers } from "./images";
+import { specialistsHandlers } from "./specialists";
 
-const handlers = [...specialistsHandlers];
+const handlers = [...imagesHandlers, ...specialistsHandlers];
 
 export { handlers };
