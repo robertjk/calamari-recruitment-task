@@ -5,29 +5,19 @@ import { renderWithStore } from "%store/utils/renderWithStore";
 
 import { SpecialistsList } from "./SpecialistsList";
 
-test("Renders specialists tiles", () => {
-  renderWithStore(<SpecialistsList />);
+test("Renders proper text when loading", () => {
+  renderWithStore(<SpecialistsList isError={false} isLoading />);
 
-  const specialistNewsom = screen.getByText("Joanna Newsom");
-  const specialistMcNulty = screen.getByText("James McNulty");
+  const loadingText = screen.getByText(/Loading/i);
 
-  expect(specialistNewsom).toBeVisible();
-  expect(specialistMcNulty).toBeVisible();
+  expect(loadingText).toBeInTheDocument();
 });
 
-test("Renders the text with no specialists", () => {
-  renderWithStore(<SpecialistsList />, {
-    preloadedState: {
-      specialists: {
-        page: "all",
-        searchQuery: "",
-        specialistsAll: {},
-        specialistsFavorite: [],
-      },
-    },
-  });
+test("Renders proper text on error", () => {
+  const error = new Error("Some error");
+  renderWithStore(<SpecialistsList error={error} isError isLoading={false} />);
 
-  const text = screen.getByText(/No specialists to show/i);
+  const errorText = screen.getByText(/Error/i);
 
-  expect(text).toBeInTheDocument();
+  expect(errorText).toBeInTheDocument();
 });

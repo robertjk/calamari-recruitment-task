@@ -1,14 +1,16 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
+import { type Specialist as SpecialistType } from "%store/apiSlice";
+
 import { Specialist } from "./Specialist";
 import styles from "./SpecialistsList.module.css";
 
 interface SpecialistsListProps {
-  error: FetchBaseQueryError | SerializedError | undefined;
+  error?: FetchBaseQueryError | SerializedError;
   isError: boolean;
   isLoading: boolean;
-  specialists?: Specialist[];
+  specialists?: SpecialistType[];
 }
 function SpecialistsList({
   error,
