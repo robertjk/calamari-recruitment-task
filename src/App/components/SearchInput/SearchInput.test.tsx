@@ -1,14 +1,23 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useState } from "react";
 import { expect, test, vi } from "vitest";
-
-import { renderWithStore } from "%store/utils/renderWithStore";
 
 import { SearchInput } from "./SearchInput";
 
+function StatefulParent() {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  function handleChange(newSearchQuery: string) {
+    setSearchQuery(newSearchQuery);
+  }
+
+  return <SearchInput value={searchQuery} onChange={handleChange} />;
+}
+
 function renderComponent() {
   vi.clearAllMocks();
-  renderWithStore(<SearchInput />);
+  render(<StatefulParent />);
 }
 
 test("Properly handles input text changes", async () => {

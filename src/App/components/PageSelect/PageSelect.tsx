@@ -49,4 +49,4 @@ function PageSelect({ className, onChange, value }: PageSelectProps) {
   );
 }
 
-export { PageSelect, type Page };
+export { type Page, PageSelect };
