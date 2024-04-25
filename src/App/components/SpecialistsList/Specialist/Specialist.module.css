@@ -72,7 +72,7 @@
 
   &:hover {
     border-top: 3px solid transparent;
-    border-bottom: 3px solid var(--color-blue);
+    border-bottom: 3px solid var(--color-blue-dark);
   }
 }
 
@@ -100,9 +100,9 @@
 
   &:hover {
     cursor: pointer;
-    border-color: var(--color-blue);
+    border-color: var(--color-blue-dark);
     color: var(--color-white);
-    background-color: var(--color-blue);
+    background-color: var(--color-blue-dark);
   }
 
   & + & {

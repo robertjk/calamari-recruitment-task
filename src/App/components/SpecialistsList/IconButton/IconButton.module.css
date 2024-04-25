@@ -9,10 +9,11 @@
 
   &:hover {
     cursor: pointer;
-  }
-}
 
-.icon {
+    .icon.changeColorOnHover path {
+      fill: var(--color-blue-light);
+    }
+  }
 }
 
 .visuallyHiddenText {

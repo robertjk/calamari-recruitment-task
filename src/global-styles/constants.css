@@ -6,7 +6,8 @@
   --color-grey-medium: #f2f4f6;
   --color-grey-dark: #e2e4ec;
   --color-grey-darker: #a2a8c1;
-  --color-blue: #3540ff;
+  --color-blue-dark: #3540ff;
+  --color-blue-light: #00e3ee;
 
   /* 1rem = 10px */
   --text-size-xl: 3rem;

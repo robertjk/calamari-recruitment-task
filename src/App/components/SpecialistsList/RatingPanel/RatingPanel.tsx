@@ -18,11 +18,21 @@ function RatingPanel({ className, specialist }: RatingPanelProps) {
       <h3 className={styles.average}>{ratingAverageRounded}</h3>
       <h4 className={styles.count}>({specialist.rating.count})</h4>
       <fieldset className={styles.buttons}>
-        <IconButton icon="starClear">Rate 1 star</IconButton>
-        <IconButton icon="starClear">Rate 2 stars</IconButton>
-        <IconButton icon="starClear">Rate 3 stars</IconButton>
-        <IconButton icon="starClear">Rate 4 stars</IconButton>
-        <IconButton icon="starClear">Rate 5 stars</IconButton>
+        <IconButton icon="starClear" changeColorOnHover>
+          Rate 1 star
+        </IconButton>
+        <IconButton icon="starClear" changeColorOnHover>
+          Rate 2 stars
+        </IconButton>
+        <IconButton icon="starClear" changeColorOnHover>
+          Rate 3 stars
+        </IconButton>
+        <IconButton icon="starClear" changeColorOnHover>
+          Rate 4 stars
+        </IconButton>
+        <IconButton icon="starClear" changeColorOnHover>
+          Rate 5 stars
+        </IconButton>
       </fieldset>
     </div>
   );

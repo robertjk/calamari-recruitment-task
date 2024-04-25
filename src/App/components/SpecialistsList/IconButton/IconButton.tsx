@@ -34,6 +34,7 @@ const ICONS = {
 
 interface IconButtonProps {
   children: string;
+  changeColorOnHover?: boolean;
   className?: string;
   icon: Icon;
   onClick?: (event: MouseEvent) => void;
@@ -42,6 +43,7 @@ interface IconButtonProps {
 
 function IconButton({
   children,
+  changeColorOnHover = false,
   className,
   icon,
   onClick = () => undefined,
@@ -57,7 +59,12 @@ function IconButton({
       onClick={onClick}
       title={titleAttr}
     >
-      <Icon className={styles.icon} />
+      <Icon
+        className={classNames({
+          [styles.icon]: true,
+          [styles.changeColorOnHover]: changeColorOnHover,
+        })}
+      />
       <span className={styles.visuallyHiddenText}>{children}</span>
     </button>
   );
