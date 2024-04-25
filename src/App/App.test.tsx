@@ -38,15 +38,13 @@ test("Add to favorites functionality", async () => {
   const { user } = setup();
 
   const specialistsAll = (await screen.findAllByRole("listitem")).map(
-    (specialistItem) => {
-      return {
-        name: within(specialistItem).getByRole("heading", { level: 2 })
-          .textContent,
-        favoriteButton: within(specialistItem).getByRole("button", {
-          name: "Add to favorites",
-        }),
-      };
-    },
+    (specialistItem) => ({
+      name: within(specialistItem).getByRole("heading", { level: 2 })
+        .textContent,
+      favoriteButton: within(specialistItem).getByRole("button", {
+        name: "Add to favorites",
+      }),
+    }),
   );
   const specialistJoannaNewsom = specialistsAll.find(
     ({ name }) => name === "Joanna Newsom",
@@ -108,4 +106,60 @@ test("Search functionality", async () => {
   expect(
     screen.getByRole("heading", { name: "Joanna Newsom" }),
   ).toBeInTheDocument();
+});
+
+test("Rating functionality", async () => {
+  const { user } = setup();
+
+  const specialistsAll = (await screen.findAllByRole("listitem")).map(
+    (specialistItem) => ({
+      name: within(specialistItem).getByRole("heading", { level: 2 })
+        .textContent,
+      listItem: specialistItem,
+    }),
+  );
+  const specialistListItem = specialistsAll.find(
+    ({ name }) => name === "Pharoah Sanders",
+  )?.listItem;
+  if (!specialistListItem) {
+    throw new Error("List item for Pharoah Sanders not found");
+  }
+
+  const ratingAverage = within(specialistListItem).getByTitle("Rating average");
+  const ratingCount = within(specialistListItem).getByTitle("Rating count");
+  expect(ratingAverage).toHaveTextContent("4.9");
+  expect(ratingCount).toHaveTextContent("(18)");
+
+  const rate1StarButton = within(specialistListItem).getByRole("button", {
+    name: "Rate 1 star",
+  });
+  await user.click(rate1StarButton);
+  await waitFor(() => {
+    expect(ratingAverage).toHaveTextContent("4.7");
+  });
+  await waitFor(() => {
+    expect(ratingCount).toHaveTextContent("(19)");
+  });
+
+  const rate3StarsButton = within(specialistListItem).getByRole("button", {
+    name: "Rate 3 stars",
+  });
+  await user.click(rate3StarsButton);
+  await waitFor(() => {
+    expect(ratingAverage).toHaveTextContent("4.8");
+  });
+  await waitFor(() => {
+    expect(ratingCount).toHaveTextContent("(19)");
+  });
+
+  const rate5StarsButton = within(specialistListItem).getByRole("button", {
+    name: "Rate 5 stars",
+  });
+  await user.click(rate5StarsButton);
+  await waitFor(() => {
+    expect(ratingAverage).toHaveTextContent("4.9");
+  });
+  await waitFor(() => {
+    expect(ratingCount).toHaveTextContent("(19)");
+  });
 });

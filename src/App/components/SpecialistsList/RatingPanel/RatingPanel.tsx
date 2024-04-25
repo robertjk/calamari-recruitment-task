@@ -49,8 +49,12 @@ function RatingPanel({ className, specialist }: RatingPanelProps) {
 
   return (
     <div className={classNames(styles.root, className)}>
-      <h3 className={styles.average}>{ratingAverageRounded}</h3>
-      <h4 className={styles.count}>({specialist.rating.count})</h4>
+      <h3 className={styles.average} title="Rating average">
+        {ratingAverageRounded}
+      </h3>
+      <h4 className={styles.count} title="Rating count">
+        ({specialist.rating.count})
+      </h4>
 
       <fieldset className={styles.buttons}>
         {([1, 2, 3, 4, 5] as Rating[]).map((rating) => (
@@ -62,7 +66,7 @@ function RatingPanel({ className, specialist }: RatingPanelProps) {
             onMouseLeave={handleMouseLeave}
             onClick={createHandleClick(rating)}
           >
-            {`Rate ${rating.toString()} star`}
+            {`Rate ${rating.toString()} star${rating > 1 ? "s" : ""}`}
           </IconButton>
         ))}
       </fieldset>
