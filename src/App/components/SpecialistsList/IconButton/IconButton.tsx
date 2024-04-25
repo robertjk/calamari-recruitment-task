@@ -34,19 +34,23 @@ const ICONS = {
 
 interface IconButtonProps {
   children: string;
-  changeColorOnHover?: boolean;
+  alternateFill?: boolean;
   className?: string;
   icon: Icon;
   onClick?: (event: MouseEvent) => void;
+  onMouseEnter?: (event: MouseEvent) => void;
+  onMouseLeave?: (event: MouseEvent) => void;
   title?: string;
 }
 
 function IconButton({
   children,
-  changeColorOnHover = false,
+  alternateFill = false,
   className,
   icon,
   onClick = () => undefined,
+  onMouseEnter = () => undefined,
+  onMouseLeave = () => undefined,
   title = "",
 }: IconButtonProps) {
   const titleAttr = title || children;
@@ -57,12 +61,14 @@ function IconButton({
     <button
       className={classNames(styles.root, className)}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       title={titleAttr}
     >
       <Icon
         className={classNames({
           [styles.icon]: true,
-          [styles.changeColorOnHover]: changeColorOnHover,
+          [styles.alternateFill]: alternateFill,
         })}
       />
       <span className={styles.visuallyHiddenText}>{children}</span>
