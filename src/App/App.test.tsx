@@ -25,6 +25,8 @@ function expectSpecialistsCount(count: number) {
 test("Renders properly the default page with all specialists", async () => {
   setup();
 
+  expect(screen.getByText(/Loading/)).toBeInTheDocument();
+
   const pageTitle = screen.getAllByText(new RegExp(PAGE_TITLES.all, "i"));
   expect(pageTitle[0]).toBeInTheDocument();
 

@@ -1,27 +1,42 @@
 import classNames from "classnames";
-import { ChangeEvent } from "react";
+import debounce from "lodash/debounce";
+import { ChangeEvent, useCallback, useEffect, useMemo } from "react";
 
 import styles from "./SearchInput.module.css";
+
+const DEBOUNCE_TIME = 500;
 
 interface SearchInputProps {
   className?: string;
   onChange: (newValue: string) => void;
-  value: string;
 }
 
-function SearchInput({ className, onChange, value }: SearchInputProps) {
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const newSearchPhrase = event.target.value;
-    onChange(newSearchPhrase);
-  }
+function SearchInput({ className, onChange }: SearchInputProps) {
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newSearchPhrase = event.target.value;
+      onChange(newSearchPhrase);
+    },
+    [onChange],
+  );
+
+  const handleChangeDebounced = useMemo(
+    () => debounce(handleChange, DEBOUNCE_TIME),
+    [handleChange],
+  );
+
+  useEffect(() => {
+    return () => {
+      handleChangeDebounced.cancel();
+    };
+  });
 
   return (
     <input
       type="search"
       name="searchText"
       placeholder="Search..."
-      value={value}
-      onChange={handleChange}
+      onChange={handleChangeDebounced}
       className={classNames(className, styles.root)}
     />
   );

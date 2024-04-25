@@ -1,34 +1,44 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { useState } from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
 
 import { SearchInput } from "./SearchInput";
 
-function StatefulParent() {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+test("Debouncing of input changes", () => {
+  // This test manuall fires events using fireEvent instead of
+  // user-event library, as currently user-event doesn't work
+  // with Vitest fake timers:
+  // https://github.com/testing-library/user-event/issues/1115
 
-  function handleChange(newSearchQuery: string) {
-    setSearchQuery(newSearchQuery);
-  }
+  vi.useFakeTimers();
 
-  return <SearchInput value={searchQuery} onChange={handleChange} />;
-}
+  const handleChangeMock = vi.fn();
 
-function renderComponent() {
-  vi.clearAllMocks();
-  render(<StatefulParent />);
-}
-
-test("Properly handles input text changes", async () => {
-  const user = userEvent.setup();
-  renderComponent();
+  render(<SearchInput onChange={handleChangeMock} />);
   const input = screen.getByPlaceholderText(/Search/);
 
-  input.focus();
-  await user.keyboard("something");
+  // Entering "something"
+  fireEvent.change(input, { target: { value: "s" } });
+  fireEvent.change(input, { target: { value: "so" } });
+  fireEvent.change(input, { target: { value: "som" } });
+  fireEvent.change(input, { target: { value: "some" } });
+  fireEvent.change(input, { target: { value: "somet" } });
+  vi.advanceTimersByTime(400);
+  fireEvent.change(input, { target: { value: "someth" } });
+  fireEvent.change(input, { target: { value: "somethi" } });
+  vi.advanceTimersByTime(300);
+  fireEvent.change(input, { target: { value: "somethin" } });
+  fireEvent.change(input, { target: { value: "something" } });
   expect(input).toHaveValue("something");
+  expect(handleChangeMock).not.toHaveBeenCalled();
+  vi.advanceTimersByTime(500);
+  expect(handleChangeMock).toHaveBeenCalledTimes(1);
+  expect(handleChangeMock).toHaveBeenLastCalledWith("something");
 
-  await user.clear(input);
+  // Clearing the input
+  fireEvent.change(input, { target: { value: "" } });
   expect(input).toHaveValue("");
+  expect(handleChangeMock).toHaveBeenCalledTimes(1);
+  vi.advanceTimersByTime(500);
+  expect(handleChangeMock).toHaveBeenCalledTimes(2);
+  expect(handleChangeMock).toHaveBeenLastCalledWith("");
 });

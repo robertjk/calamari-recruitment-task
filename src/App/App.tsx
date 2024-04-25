@@ -42,7 +42,6 @@ function App() {
           />
           <SearchInput
             className={styles.searchInput}
-            value={searchQuery}
             onChange={handleSearchQueryChange}
           />
         </form>
