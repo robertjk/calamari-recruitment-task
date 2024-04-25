@@ -1,4 +1,7 @@
 .root {
+  display: flex inline;
+  justify-content: center;
+  align-items: center;
   width: 30px;
   height: 30px;
   background-repeat: no-repeat;
@@ -7,38 +10,9 @@
   &:hover {
     cursor: pointer;
   }
+}
 
-  &.icon_heartClear {
-    background-image: url("./icons/icon-heart-clear.svg");
-  }
-
-  &.icon_heartFilled {
-    background-image: url("./icons/icon-heart-filled.svg");
-  }
-
-  &.icon_threeDots {
-    background-image: url("./icons/icon-three-dots.svg");
-  }
-
-  &.icon_bell {
-    background-image: url("./icons/icon-bell.svg");
-  }
-
-  &.icon_calendar {
-    background-image: url("./icons/icon-calendar.svg");
-  }
-
-  &.icon_mail {
-    background-image: url("./icons/icon-mail.svg");
-  }
-
-  &.icon_starClear {
-    background-image: url("./icons/icon-star-clear.svg");
-  }
-
-  &.icon_starFilled {
-    background-image: url("./icons/icon-star-filled.svg");
-  }
+.icon {
 }
 
 .visuallyHiddenText {
