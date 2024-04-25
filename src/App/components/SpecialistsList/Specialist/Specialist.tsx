@@ -2,7 +2,7 @@ import classNames from "classnames";
 
 import {
   type Specialist as SpecialistType,
-  useUpdateSpecialistMutation,
+  useFavoriteSpecialistMutation,
 } from "%store/apiSlice";
 
 import { IconButton } from "../IconButton";
@@ -14,7 +14,7 @@ interface SpecialistProps {
 }
 
 function Specialist({ specialist }: SpecialistProps) {
-  const [updateSpecialist] = useUpdateSpecialistMutation();
+  const [favoriteSpecialist] = useFavoriteSpecialistMutation();
 
   const photoAlt = `${specialist.fullName}'s photograph`;
 
@@ -26,7 +26,7 @@ function Specialist({ specialist }: SpecialistProps) {
   function handleFavoritesClick() {
     async function asyncWrapper() {
       const { id, favorite } = specialist;
-      await updateSpecialist({ id, favorite: !favorite }).unwrap();
+      await favoriteSpecialist({ id, favorite: !favorite }).unwrap();
     }
 
     asyncWrapper().catch(() => {

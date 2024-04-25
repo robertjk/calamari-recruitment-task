@@ -7,6 +7,7 @@ interface SpecialistResponse {
   rating: {
     sum: number;
     count: number;
+    mine?: number;
   };
   favorite: boolean;
 }
@@ -15,7 +16,6 @@ interface Specialist extends SpecialistResponse {
   fullName: string;
   rating: SpecialistResponse["rating"] & {
     average: number;
-    mine?: number;
   };
 }
 

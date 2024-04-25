@@ -34,15 +34,29 @@ const apiSlice = createApi({
       providesTags: ["Specialist"],
     }),
 
-    updateSpecialist: builder.mutation<
+    favoriteSpecialist: builder.mutation<
       Specialist,
-      Pick<Specialist, "id" | "favorite">
+      { id: Specialist["id"]; favorite: Specialist["favorite"] }
     >({
-      query: (specialist) => ({
-        url: `/specialists/${specialist.id.toString()}`,
+      query: ({ id, favorite }) => ({
+        url: `/specialists/${id.toString()}/favorite`,
         method: "PATCH",
         body: {
-          favorite: specialist.favorite,
+          favorite,
+        },
+      }),
+      invalidatesTags: ["Specialist"],
+    }),
+
+    rateSpecialist: builder.mutation<
+      Specialist,
+      { id: Specialist["id"]; rating: Specialist["rating"]["mine"] }
+    >({
+      query: ({ id, rating }) => ({
+        url: `/specialists/${id.toString()}/rate`,
+        method: "PATCH",
+        body: {
+          rating,
         },
       }),
       invalidatesTags: ["Specialist"],
@@ -50,6 +64,15 @@ const apiSlice = createApi({
   }),
 });
 
-const { useGetSpecialistsQuery, useUpdateSpecialistMutation } = apiSlice;
+const {
+  useFavoriteSpecialistMutation,
+  useGetSpecialistsQuery,
+  useRateSpecialistMutation,
+} = apiSlice;
 
-export { apiSlice, useGetSpecialistsQuery, useUpdateSpecialistMutation };
+export {
+  apiSlice,
+  useFavoriteSpecialistMutation,
+  useGetSpecialistsQuery,
+  useRateSpecialistMutation,
+};

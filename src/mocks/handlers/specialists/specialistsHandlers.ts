@@ -41,16 +41,40 @@ const specialistsHandlers = [
     return HttpResponse.json(specialistsList);
   }),
 
-  http.patch<
-    { id: string },
-    { favorite: SpecialistResponse["favorite"] },
-    SpecialistResponse
-  >("/fakeApi/specialists/:id", async ({ params, request }) => {
-    const id = Number(params.id);
-    const newFavorite = (await request.json()).favorite;
-    specialists[id] = { ...specialists[id], favorite: newFavorite };
-    return HttpResponse.json(specialists[id]);
-  }),
+  http.patch<{ id: string }, { favorite: SpecialistResponse["favorite"] }>(
+    "/fakeApi/specialists/:id/favorite",
+    async ({ params, request }) => {
+      const id = Number(params.id);
+      const newFavorite = (await request.json()).favorite;
+      specialists[id] = { ...specialists[id], favorite: newFavorite };
+      return new HttpResponse(null, { status: 204 });
+    },
+  ),
+
+  http.patch<{ id: string }, { rating: number }>(
+    "/fakeApi/specialists/:id/rate",
+    async ({ params, request }) => {
+      const id = Number(params.id);
+      const specialistRating = specialists[id].rating;
+      const createsNewRating = !specialistRating.mine;
+      const newMine = (await request.json()).rating;
+      const newCount = createsNewRating
+        ? specialistRating.count + 1
+        : specialistRating.count;
+      const newSum =
+        specialistRating.sum + newMine - (specialistRating.mine ?? 0);
+
+      specialists[id] = {
+        ...specialists[id],
+        rating: {
+          sum: newSum,
+          count: newCount,
+          mine: newMine,
+        },
+      };
+      return new HttpResponse(null, { status: 204 });
+    },
+  ),
 ];
 
 export { specialistsHandlers };

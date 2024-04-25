@@ -1,12 +1,12 @@
 import classNames from "classnames";
+import { useState } from "react";
 
-import { type Specialist } from "%store/apiSlice";
+import { type Specialist, useRateSpecialistMutation } from "%store/apiSlice";
 
 import { IconButton } from "../IconButton";
 import styles from "./RatingPanel.module.css";
-import { useState } from "react";
 
-type Rating = 1 | 2 | 3 | 4 | 5 | NaN;
+type Rating = 1 | 2 | 3 | 4 | 5;
 
 interface RatingPanelProps {
   className?: string;
@@ -14,7 +14,10 @@ interface RatingPanelProps {
 }
 
 function RatingPanel({ className, specialist }: RatingPanelProps) {
-  const [ratingHovered, setRatingHovered] = useState<Rating>(NaN);
+  const [rateSpecialistMutation] = useRateSpecialistMutation();
+  const [ratingHovered, setRatingHovered] = useState<Rating | undefined>(
+    undefined,
+  );
 
   const ratingAverageRounded = specialist.rating.average.toFixed(1);
   const ratingMine = Number(specialist.rating.mine);
@@ -28,8 +31,21 @@ function RatingPanel({ className, specialist }: RatingPanelProps) {
   }
 
   function isHighlighted(rating: Rating) {
-    return ratingMine >= rating || ratingHovered >= rating;
+    return (
+      (ratingMine && ratingMine >= rating) ||
+      (ratingHovered && ratingHovered >= rating)
+    );
   }
+
+  const createHandleClick = (rating: Rating) => () => {
+    async function asyncWrapper() {
+      await rateSpecialistMutation({ id: specialist.id, rating });
+    }
+
+    asyncWrapper().catch(() => {
+      throw new Error(`Sending the new rating`);
+    });
+  };
 
   return (
     <div className={classNames(styles.root, className)}>
@@ -37,13 +53,14 @@ function RatingPanel({ className, specialist }: RatingPanelProps) {
       <h4 className={styles.count}>({specialist.rating.count})</h4>
 
       <fieldset className={styles.buttons}>
-        {[1, 2, 3, 4, 5].map((rating) => (
+        {([1, 2, 3, 4, 5] as Rating[]).map((rating) => (
           <IconButton
             key={rating}
             icon="starClear"
             alternateFill={isHighlighted(rating)}
             onMouseEnter={createHandleMouseEnter(rating)}
             onMouseLeave={handleMouseLeave}
+            onClick={createHandleClick(rating)}
           >
             {`Rate ${rating.toString()} star`}
           </IconButton>
