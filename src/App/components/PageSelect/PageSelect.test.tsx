@@ -18,15 +18,10 @@ function StatefulParent() {
   return <PageSelect value={page} onChange={onChangeMock} />;
 }
 
-function renderComponent() {
-  vi.clearAllMocks();
-  render(<StatefulParent />);
-}
-
 test("Properly handles clicking on inputs and labels", async () => {
   const user = userEvent.setup();
 
-  renderComponent();
+  render(<StatefulParent />);
   expect(onChangeMock).toHaveBeenCalledTimes(0);
 
   const favoritesInput = screen.getByLabelText(
