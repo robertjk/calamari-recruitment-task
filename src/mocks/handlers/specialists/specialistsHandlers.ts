@@ -37,7 +37,6 @@ const specialistsHandlers = [
         queryRegExp.test(specialist.profession);
       specialistsList = specialistsList.filter(matchesSearchQuery);
     }
-
     return HttpResponse.json(specialistsList);
   }),
 

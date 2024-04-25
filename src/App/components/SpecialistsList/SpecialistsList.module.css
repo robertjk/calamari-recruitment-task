@@ -1,4 +1,11 @@
-.root {
+.rootText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rootSpecialists {
   display: grid;
   grid-template-columns: repeat(auto-fit, 32.3rem);
   gap: 3.1rem;

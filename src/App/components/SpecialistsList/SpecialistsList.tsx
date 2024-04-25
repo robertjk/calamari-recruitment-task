@@ -33,16 +33,16 @@ function SpecialistsList({
   const noSpecialists = specialists?.length === 0;
 
   return isLoading ? (
-    <p className={styles.root}>Loading...</p>
+    <p className={styles.rootText}>Loading...</p>
   ) : isError ? (
-    <div className={styles.root}>
+    <div className={styles.rootText}>
       <p>Error loading data:</p>
       <p>{stringifyError(error)}</p>
     </div>
   ) : noSpecialists ? (
-    <p className={styles.root}>No specialists to show</p>
+    <p className={styles.rootText}>No specialists to show</p>
   ) : (
-    <ul className={styles.root}>
+    <ul className={styles.rootSpecialists}>
       {specialists?.map((specialist) => (
         <Specialist key={specialist.id} specialist={specialist} />
       ))}
