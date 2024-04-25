@@ -11,7 +11,7 @@ interface RatingPanelProps {
 }
 
 function RatingPanel({ className, specialist }: RatingPanelProps) {
-  const ratingAverageRounded = Number(specialist.ratingAverage.toFixed(1));
+  const ratingAverageRounded = Number(specialist.rating.average.toFixed(1));
 
   return (
     <div className={classNames(styles.root, className)}>

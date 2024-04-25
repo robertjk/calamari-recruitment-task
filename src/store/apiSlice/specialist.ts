@@ -13,7 +13,10 @@ interface SpecialistResponse {
 
 interface Specialist extends SpecialistResponse {
   fullName: string;
-  ratingAverage: number;
+  rating: SpecialistResponse["rating"] & {
+    average: number;
+    mine?: number;
+  };
 }
 
 export { type Specialist, type SpecialistResponse };

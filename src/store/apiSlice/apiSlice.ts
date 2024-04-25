@@ -25,7 +25,10 @@ const apiSlice = createApi({
         return response.map((specialist) => ({
           ...specialist,
           fullName: `${specialist.name} ${specialist.surname}`,
-          ratingAverage: specialist.rating.sum / specialist.rating.count,
+          rating: {
+            ...specialist.rating,
+            average: specialist.rating.sum / specialist.rating.count,
+          },
         }));
       },
       providesTags: ["Specialist"],
