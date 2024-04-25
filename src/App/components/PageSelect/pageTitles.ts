@@ -1,4 +1,4 @@
-import { type Page } from "%store/specialistsSlice";
+import { type Page } from "./PageSelect";
 
 const PAGE_TITLES: { [page in Page]: string } = {
   all: "All specialists",

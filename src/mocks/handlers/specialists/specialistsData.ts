@@ -1,4 +1,4 @@
-import { type SpecialistResponse } from "%store/apiSlice/apiSlice";
+import { type SpecialistResponse } from "%store/apiSlice";
 
 const specialistsData: SpecialistResponse[] = [
   {

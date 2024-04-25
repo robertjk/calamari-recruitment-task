@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { type Specialist } from "%store/apiSlice/apiSlice";
+import { type Specialist } from "%store/apiSlice";
 
 import { IconButton } from "../IconButton";
 import styles from "./RatingPanel.module.css";
