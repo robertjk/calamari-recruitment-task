@@ -47,8 +47,8 @@ const specialistsData: SpecialistResponse[] = [
     profession: "policeman",
     photoUrl: "https://s3.cine3.com/2016/07/1200-1200x675.jpg",
     rating: {
-      sum: 5818,
-      count: 1181,
+      sum: 2518,
+      count: 712,
     },
     favorite: false,
   },
@@ -61,6 +61,17 @@ const specialistsData: SpecialistResponse[] = [
     rating: {
       sum: 231,
       count: 51,
+    },
+    favorite: false,
+  },
+  {
+    id: 6,
+    name: "Siddhartha",
+    surname: "Gautama",
+    profession: "religious teacher",
+    rating: {
+      sum: 8872,
+      count: 1802,
     },
     favorite: false,
   },

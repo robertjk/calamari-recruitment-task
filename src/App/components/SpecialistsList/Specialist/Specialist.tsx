@@ -34,6 +34,17 @@ function Specialist({ specialist }: SpecialistProps) {
     });
   }
 
+  let specialistPhoto;
+  if (specialist.photoUrl) {
+    specialistPhoto = (
+      <img src={specialist.photoUrl} alt={photoAlt} className={styles.photo} />
+    );
+  } else {
+    const initials =
+      specialist.name[0].toUpperCase() + specialist.surname[0].toUpperCase();
+    specialistPhoto = <span className={styles.photo}>{initials}</span>;
+  }
+
   return (
     <li className={styles.root}>
       <IconButton
@@ -53,7 +64,7 @@ function Specialist({ specialist }: SpecialistProps) {
       </IconButton>
       <h2 className={styles.name}>{specialist.fullName}</h2>
       <h3 className={styles.profession}>{specialist.profession}</h3>
-      <img src={specialist.photoUrl} alt={photoAlt} className={styles.photo} />
+      {specialistPhoto}
       <IconButton
         className={classNames(styles.tileButton, styles.alert)}
         disabled

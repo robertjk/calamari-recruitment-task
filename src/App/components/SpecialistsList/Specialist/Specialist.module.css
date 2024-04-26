@@ -1,5 +1,5 @@
 .root {
-  --border: 0.1rem solid var(--color-grey-medium);
+  --border: 0.1rem solid var(--color-grey-3);
 
   display: grid;
   /* prettier-ignore */
@@ -31,15 +31,22 @@
 .profession {
   grid-area: profession;
   line-height: 100%;
-  color: var(--color-grey-darker);
+  color: var(--color-grey-6);
 }
 
 .photo {
   grid-area: photo;
   object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 100%;
   width: 10rem;
   height: 100%;
+  color: var(--color-blue-dark);
+  background-color: var(--color-grey-5);
+  font-size: var(--text-size-xl);
+  font-weight: 600;
 }
 
 .favorite {
@@ -58,7 +65,7 @@
   height: 3.2rem;
 
   &:hover {
-    background-color: var(--color-grey-medium);
+    background-color: var(--color-grey-3);
   }
 }
 
@@ -91,7 +98,7 @@
   height: 100%;
   width: 100%;
   font-size: var(--text-size-s);
-  color: var(--color-grey-darker);
+  color: var(--color-grey-6);
   text-transform: uppercase;
 
   &:hover {
@@ -102,7 +109,7 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-grey-darker);
+    outline: 2px solid var(--color-grey-6);
   }
 
   & + & {

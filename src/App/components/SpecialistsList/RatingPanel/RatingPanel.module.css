@@ -13,7 +13,7 @@
 
 .average {
   grid-area: average;
-  font-size: var(--text-size-xl);
+  font-size: var(--text-size-xxl);
   font-weight: 600;
   line-height: 2.5rem;
 }
@@ -22,7 +22,7 @@
   grid-area: count;
   font-size: var(--text-size-s);
   line-height: 1.1rem;
-  color: var(--color-grey-darker);
+  color: var(--color-grey-6);
 }
 
 .buttons {

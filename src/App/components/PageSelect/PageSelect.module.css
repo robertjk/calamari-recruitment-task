@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border-width) solid var(--color-grey-dark);
+  border: var(--border-width) solid var(--color-grey-4);
   border-right-width: 0;
 
   &:first-child {
@@ -28,7 +28,7 @@
 
   &:hover {
     color: var(--color-blue-dark);
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey-2);
   }
 
   &.isChecked {

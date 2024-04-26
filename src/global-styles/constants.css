@@ -1,16 +1,18 @@
 :root {
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-grey-lighter: #f9fafe;
-  --color-grey-light: #f3f5fc;
-  --color-grey-medium: #f2f4f6;
-  --color-grey-dark: #e2e4ec;
-  --color-grey-darker: #a2a8c1;
+  --color-grey-1: #f9fafe;
+  --color-grey-2: #f3f5fc;
+  --color-grey-3: #f2f4f6;
+  --color-grey-4: #e2e4ec;
+  --color-grey-5: #deeaff;
+  --color-grey-6: #a2a8c1;
   --color-blue-dark: #3540ff;
   --color-blue-light: #00e3ee;
 
   /* 1rem = 10px */
-  --text-size-xl: 3rem;
+  --text-size-xxl: 3rem;
+  --text-size-xl: 2.4rem;
   --text-size-l: 1.9rem;
   --text-size-m: 1.4rem;
   --text-size-s: 1.2rem;

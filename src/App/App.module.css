@@ -50,7 +50,7 @@
 
 .title {
   grid-area: title;
-  font-size: var(--text-size-xl);
+  font-size: var(--text-size-xxl);
   font-weight: 600;
   text-wrap: nowrap;
 

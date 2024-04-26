@@ -12,7 +12,7 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-grey-darker);
+    outline: 2px solid var(--color-grey-6);
   }
 }
 

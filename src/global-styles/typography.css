@@ -18,7 +18,7 @@
 
 body {
   color: var(--color-black);
-  background-color: var(--color-grey-lighter);
+  background-color: var(--color-grey-1);
   font-size: 1.4rem;
   font-family: "Open Sans", sans-serif;
   font-synthesis: none;

@@ -5,13 +5,13 @@
   transition: width var(--animation-timing-function) var(--animation-duration);
 
   &::placeholder {
-    color: var(--color-grey-darker);
+    color: var(--color-grey-6);
   }
 
   &:focus {
     width: 100%;
     max-width: 31.6rem;
     background-color: var(--color-white);
-    outline: 2px solid var(--color-grey-darker);
+    outline: 2px solid var(--color-grey-6);
   }
 }
