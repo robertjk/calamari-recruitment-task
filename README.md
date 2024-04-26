@@ -1,83 +1,93 @@
 # Calamari Recruitment Task
 
-Zadanie rekrutacyjne dla Calamari.
+Recruitment task for Calmari.
 
-## Zadanie
+## Task
 
-Zadanie polega na implementacji ekranu aplikacji z wykorzystaniem React.js.
-Projekt ekranu znajduje się w
-[Figmie](https://www.figma.com/file/5yj3qvtTUOsVRNzleYzVeq/Programista-Frontend---TEST?type=design&node-id=0-1&mode=design&t=BDUpSDZ8EJd5zh0q-0).
+The task is to implement an application screen using React.js.
 
-### Wymagania funkcjonalne
+Screen designs are on
+[Figma](https://www.figma.com/file/5yj3qvtTUOsVRNzleYzVeq/Programista-Frontend---TEST?type=design&node-id=0-1&mode=design&t=BDUpSDZ8EJd5zh0q-0).
 
-- Kliknięcie w gwiazdkę spowoduje ustawienie oceny,
-- Kliknięcie w serduszko powoduje, że lekarz pojawia się w zakładce "my
-  specialist",
-- Na początku gwiazdki powinny być szare, a po głosowaniu należy przeliczyć
-  średnią,
-- Screen_1 jest bazowym widokiem, screen_2 pokazuje jak mają wyglądać elementy
-  po najechaniu myszą,
-- Wygeneruj i zamocuj dane wejściowe (> 5k specjalistów) i postaraj się żeby
-  wyszukiwarka działała płynnie.
+### Functional requirements
 
-### Wymagania niefunkcjonalne
+- Clicking the star sets the rating
+- Clicking the heart displays the specialist in _My specialists_ tab
+- Initially the stars are grey; after clicking them the average rating should be
+  updated
+- _Screen_1_ is the base view, while _Screen_2_ shows the hover states
+- Generate and mock the input data (> 5k specialists), while ensuring the search
+  works smoothly
 
-- Zaimplementuj widoki nie wykorzystując bibliotek z gotowymi komponentami,
-- Dane “zamokuj”, nie muszą być nigdzie zapisywane,
-- Wykorzystaj w projekcie Redux / ReduxToolkit,
-- Do zbudowania projektu wykorzystaj webpack (nie korzystaj z gotowych rozwiązań
-  tj. CRA).
+### Non-functional requirements
 
-### Mile widziane
+- Implement the screens without using any UI component libraries
+- Mock the data; it doesn't have to be persisted anywhere
+- Use Redux / ReduxToolkit
+- To build the project use Webpack and configure it manually (don't use
+  automated solutions like Create React App)
 
-- Typescript
-- Testy
+### Nice to have
+
+- TypeScript
+- Tests
 - RWD
-- Wygodna obsługa przy pomocy klawiatury
+- Comfortable navigation using keyboard
 
-## Uwaga o rozwiązaniu
+## Note about the solution
 
-**Użyłem Vite'a zamiast Webpacka**. Jeszcze nigdy nie miałem okazji używać tego
-narzędzia, a od jakiegoś czasu bardzo chciałem spróbować. Pomyślałem że teraz
-będzie dobry moment. Myślę, że tak samo demonstruje moje umiejętności
-konfiguracji bundlerów jak zrobiłby to Webpack; szczególnie że używam go
-pierwszy raz.
+### Vite
 
-## Uruchomienie
+**I used Vite instead of Webpack**. I have never had opportunity to use this
+tool, while since some time I have wanted to try it out. I felt now would be a
+good opportunity to do that. I think it demonstrates my skills of configuring
+bundlers exactly the same as Webpack would do; especiall that I'm using it for
+the first time.
 
-### Wymagania
+### Specialists data
 
-Do uruchomienia aplikacji wymagane są:
+I didn't generate the specialists data, but simply mocked 6 specialists
+manually.
+
+The rest of the functionality took me more time than expected. Now I simply
+don't have time to spend on generating the data, then implementing pagination or
+lazy-loading, which such amount of data would require.
+
+## Running
+
+### Dependencies
+
+To run the app you need to have the following installed:
 
 - [Node](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
-### Instalacja
+### Setup
 
-Przed pierwszym uruchomieniem należy zainstalować zależności przechodząc do
-folderu aplikacji:
+Before the first run you need to install NPM dependencies by going to the app
+folder:
 
 ```sh
 $ cd calamari-recruitment-task/
 ```
 
-i wywołując:
+and executing:
 
 ```sh
 $ npm install
 ```
 
-### Uruchomienie aplikacji
+### Run the app
 
-Aby uruchomić aplikację należy wywołać:
+To run the app you need to execute:
 
 ```sh
 $ npm run dev
 ```
 
-### Testy
+### Tests
 
-Aby uruchomić testy należy wywołać:
+To run the tests suite you need to execute:
 
 ```sh
 $ npm run test
