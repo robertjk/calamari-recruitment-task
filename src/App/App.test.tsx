@@ -2,6 +2,7 @@ import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, test } from "vitest";
 
+import { specialistsData } from "%mocks/handlers/specialists/specialistsData";
 import { renderWithStore } from "%store/utils/renderWithStore";
 
 import { App } from "./App";
@@ -73,13 +74,13 @@ test("Add to favorites functionality", async () => {
   await expectSpecialistsCount(1);
 
   await user.click(allPageButton);
-  await expectSpecialistsCount(5);
+  await expectSpecialistsCount(specialistsData.length);
 });
 
 test("Search functionality", async () => {
   const { user } = setup();
 
-  await expectSpecialistsCount(5);
+  await expectSpecialistsCount(specialistsData.length);
 
   const searchInput = screen.getByRole("searchbox");
   searchInput.focus();
@@ -93,7 +94,7 @@ test("Search functionality", async () => {
   ).not.toBeInTheDocument();
 
   await user.clear(searchInput);
-  await expectSpecialistsCount(5);
+  await expectSpecialistsCount(specialistsData.length);
 
   await user.keyboard("musi");
   await expectSpecialistsCount(3);
