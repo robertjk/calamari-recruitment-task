@@ -36,59 +36,62 @@ function Specialist({ specialist }: SpecialistProps) {
 
   return (
     <li className={styles.root}>
+      <IconButton
+        className={styles.more}
+        disabled
+        icon="threeDots"
+        title="This functionality doesn't work yet"
+      >
+        More
+      </IconButton>
+      <IconButton
+        className={styles.favorite}
+        icon={favoriteButtonIcon}
+        onClick={handleFavoritesClick}
+      >
+        {favoriteButtonText}
+      </IconButton>
       <h2 className={styles.name}>{specialist.fullName}</h2>
       <h3 className={styles.profession}>{specialist.profession}</h3>
       <img src={specialist.photoUrl} alt={photoAlt} className={styles.photo} />
-      <div className={styles.actions}>
-        <IconButton
-          className={styles.favorite}
-          icon={favoriteButtonIcon}
-          onClick={handleFavoritesClick}
-        >
-          {favoriteButtonText}
-        </IconButton>
-        <IconButton
-          className={styles.more}
-          icon="threeDots"
-          title="This functionality doesn't work yet"
-        >
-          More
-        </IconButton>
-        <IconButton
-          className={classNames(styles.tileButton, styles.alert)}
-          icon="bell"
-          title="This functionality doesn't work yet"
-        >
-          Set alert
-        </IconButton>
-        <IconButton
-          className={classNames(styles.tileButton, styles.calendar)}
-          icon="calendar"
-          title="This functionality doesn't work yet"
-        >
-          Calendar
-        </IconButton>
-        <IconButton
-          className={classNames(styles.tileButton, styles.message)}
-          icon="mail"
-          title="This functionality doesn't work yet"
-        >
-          Send a message
-        </IconButton>
-        <a
-          title="This functionality doesn't work yet"
-          className={classNames(styles.textButton, styles.profileLink)}
-        >
-          Profile
-        </a>
-        <button
-          title="This functionality doesn't work yet"
-          className={classNames(styles.textButton, styles.bookVisit)}
-        >
-          Book a visit
-        </button>
-      </div>
+      <IconButton
+        className={classNames(styles.tileButton, styles.alert)}
+        disabled
+        icon="bell"
+        title="This functionality doesn't work yet"
+      >
+        Set alert
+      </IconButton>
+      <IconButton
+        className={classNames(styles.tileButton, styles.calendar)}
+        disabled
+        icon="calendar"
+        title="This functionality doesn't work yet"
+      >
+        Calendar
+      </IconButton>
+      <IconButton
+        className={classNames(styles.tileButton, styles.message)}
+        disabled
+        icon="mail"
+        title="This functionality doesn't work yet"
+      >
+        Send a message
+      </IconButton>
       <RatingPanel className={styles.ratingsPanel} specialist={specialist} />
+      <a
+        title="This functionality doesn't work yet"
+        className={classNames(styles.textButton, styles.profileLink)}
+      >
+        Profile
+      </a>
+      <button
+        title="This functionality doesn't work yet"
+        disabled
+        className={classNames(styles.textButton, styles.bookVisit)}
+      >
+        Book a visit
+      </button>
     </li>
   );
 }

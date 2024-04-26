@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import { type Page, PAGE_TITLES, PageSelect } from "%components/PageSelect";
 import { SearchInput } from "%components/SearchInput";
@@ -30,11 +30,15 @@ function App() {
     setSearchQuery(newSearchQuery);
   }
 
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+  }
+
   return (
     <div className={styles.root}>
       <header className={styles.header}>
         <h1 className={styles.title}>{pageTitle}</h1>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <PageSelect
             className={styles.pageSelect}
             value={page}

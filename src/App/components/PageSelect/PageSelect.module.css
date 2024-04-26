@@ -49,4 +49,8 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    outline: 2px solid var(--color-black);
+  }
 }

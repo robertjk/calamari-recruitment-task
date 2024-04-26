@@ -33,9 +33,10 @@ const ICONS = {
 };
 
 interface IconButtonProps {
-  children: string;
   alternateFill?: boolean;
+  children: string;
   className?: string;
+  disabled?: boolean;
   icon: Icon;
   onClick?: (event: MouseEvent) => void;
   onMouseEnter?: (event: MouseEvent) => void;
@@ -47,6 +48,7 @@ function IconButton({
   children,
   alternateFill = false,
   className,
+  disabled = false,
   icon,
   onClick = () => undefined,
   onMouseEnter = () => undefined,
@@ -60,6 +62,7 @@ function IconButton({
   return (
     <button
       className={classNames(styles.root, className)}
+      disabled={disabled}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
